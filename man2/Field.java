@@ -6,7 +6,7 @@
 
 public class Field {
     final int ROWS = 11;
-    final int COLS = 11;
+    final int COLS = 12;
 
     Semaphore[][] S;
 
