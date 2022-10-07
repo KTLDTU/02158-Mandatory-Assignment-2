@@ -34,7 +34,6 @@ crit:	/* Critical section */
   	
 exit: 
 		/* Your code here */
-				
 
 		/* Non-critical setion (may or may not terminate) */
 		do :: true -> skip :: break od
@@ -47,13 +46,7 @@ active proctype Coordinator()
 	do
 	::	
 		/*  Your code here instead of skip*/
-		int i;
-		for (i : 0..N-1) {
-			if
-				:: enter[i] == true && i != _pid -> ok[_pid] = false
-				:: !(enter[i] == true && i != _pid)-> ok[_pid] = true
-			fi
-		}
+		skip
 	od
 }
 
