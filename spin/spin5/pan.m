@@ -104,25 +104,25 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 7: /* STATE 2 - spin5.pml:54 - [((i<=(2-1)))] (0:0:0 - 1) */
+	case 7: /* STATE 2 - spin5.pml:54 - [((i<=(12-1)))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[1][2] = 1;
-		if (!((((P1 *)this)->_2_i<=(2-1))))
+		if (!((((P1 *)this)->_2_i<=(12-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
 	case 8: /* STATE 3 - spin5.pml:56 - [(enter[i])] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[1][3] = 1;
-		if (!(((int)now.enter[ Index(((P1 *)this)->_2_i, 2) ])))
+		if (!(((int)now.enter[ Index(((P1 *)this)->_2_i, 12) ])))
 			continue;
 		_m = 3; goto P999; /* 0 */
 	case 9: /* STATE 4 - spin5.pml:56 - [age[i] = (age[i]+1)] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[1][4] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ];
-		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ] = (((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ]+1);
+		(trpt+1)->bup.oval = ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 12) ];
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 12) ] = (((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 12) ]+1);
 #ifdef VAR_RANGES
-		logval("C:age[C:i]", ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ]);
+		logval("C:age[C:i]", ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 12) ]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
@@ -166,7 +166,7 @@
 	case 11: /* STATE 7 - spin5.pml:60 - [(((maxIndex!=-(1))&&(age[maxIndex]<age[i])))] (18:0:3 - 1) */
 		IfNotBlocked
 		reached[1][7] = 1;
-		if (!(((((P1 *)this)->_2_maxIndex!= -(1))&&(((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ]<((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ]))))
+		if (!(((((P1 *)this)->_2_maxIndex!= -(1))&&(((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 12) ]<((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 12) ]))))
 			continue;
 		/* dead 1: _2_maxIndex */  (trpt+1)->bup.ovals = grab_ints(3);
 		(trpt+1)->bup.ovals[0] = ((P1 *)this)->_2_maxIndex;
@@ -245,36 +245,36 @@
 	case 15: /* STATE 22 - spin5.pml:67 - [ok[maxIndex] = 1] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[1][22] = 1;
-		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]);
-		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = 1;
+		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ]);
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ] = 1;
 #ifdef VAR_RANGES
-		logval("ok[C:maxIndex]", ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]));
+		logval("ok[C:maxIndex]", ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
 	case 16: /* STATE 23 - spin5.pml:68 - [age[maxIndex] = 0] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[1][23] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ];
-		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ] = 0;
+		(trpt+1)->bup.oval = ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 12) ];
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 12) ] = 0;
 #ifdef VAR_RANGES
-		logval("C:age[C:maxIndex]", ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ]);
+		logval("C:age[C:maxIndex]", ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 12) ]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
 	case 17: /* STATE 24 - spin5.pml:69 - [(!(enter[maxIndex]))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[1][24] = 1;
-		if (!( !(((int)now.enter[ Index(((P1 *)this)->_2_maxIndex, 2) ]))))
+		if (!( !(((int)now.enter[ Index(((P1 *)this)->_2_maxIndex, 12) ]))))
 			continue;
 		_m = 3; goto P999; /* 0 */
 	case 18: /* STATE 25 - spin5.pml:69 - [ok[maxIndex] = 0] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[1][25] = 1;
-		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]);
-		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = 0;
+		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ]);
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ] = 0;
 #ifdef VAR_RANGES
-		logval("ok[C:maxIndex]", ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]));
+		logval("ok[C:maxIndex]", ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
@@ -288,17 +288,17 @@
 	case 20: /* STATE 2 - spin5.pml:27 - [enter[_pid] = 1] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[0][2] = 1;
-		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]);
-		now.enter[ Index(((P0 *)this)->_pid, 2) ] = 1;
+		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 12) ]);
+		now.enter[ Index(((P0 *)this)->_pid, 12) ] = 1;
 #ifdef VAR_RANGES
-		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]));
+		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 12) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
 	case 21: /* STATE 3 - spin5.pml:28 - [(ok[_pid])] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][3] = 1;
-		if (!(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 2) ])))
+		if (!(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 12) ])))
 			continue;
 		_m = 3; goto P999; /* 0 */
 	case 22: /* STATE 4 - spin5.pml:31 - [incrit = (incrit+1)] (0:0:1 - 1) */
@@ -329,17 +329,17 @@
 	case 25: /* STATE 7 - spin5.pml:37 - [enter[_pid] = 0] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[0][7] = 1;
-		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]);
-		now.enter[ Index(((P0 *)this)->_pid, 2) ] = 0;
+		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 12) ]);
+		now.enter[ Index(((P0 *)this)->_pid, 12) ] = 0;
 #ifdef VAR_RANGES
-		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]));
+		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 12) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
 	case 26: /* STATE 8 - spin5.pml:38 - [(!(ok[_pid]))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][8] = 1;
-		if (!( !(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 2) ]))))
+		if (!( !(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 12) ]))))
 			continue;
 		_m = 3; goto P999; /* 0 */
 	case 27: /* STATE 18 - spin5.pml:44 - [-end-] (0:0:0 - 1) */

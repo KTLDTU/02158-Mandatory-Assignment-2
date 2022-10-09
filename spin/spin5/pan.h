@@ -193,9 +193,9 @@ typedef struct P1 { /* C */
 	unsigned _p   : 6; /* state    */
 	int _2_i;
 	int _2_maxIndex;
-	int _2_age[2];
+	int _2_age[12];
 } P1;
-#define Air1	(sizeof(P1) - Offsetof(P1, _2_age) - 2*sizeof(int))
+#define Air1	(sizeof(P1) - Offsetof(P1, _2_age) - 12*sizeof(int))
 #define PP	((P0 *)this)
 typedef struct P0 { /* P */
 	unsigned _pid : 8;  /* 0..255 */
@@ -436,8 +436,8 @@ typedef struct State {
 		unsigned short _event;
 	#endif
 #endif
-	uchar enter[2];
-	uchar ok[2];
+	uchar enter[12];
+	uchar ok[12];
 	int incrit;
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */

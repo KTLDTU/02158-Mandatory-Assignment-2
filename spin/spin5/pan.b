@@ -29,7 +29,7 @@
 		
 	case 9: /* STATE 4 */
 		;
-		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ] = trpt->bup.oval;
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 12) ] = trpt->bup.oval;
 		;
 		goto R999;
 
@@ -69,13 +69,13 @@
 		
 	case 15: /* STATE 22 */
 		;
-		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = trpt->bup.oval;
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ] = trpt->bup.oval;
 		;
 		goto R999;
 
 	case 16: /* STATE 23 */
 		;
-		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ] = trpt->bup.oval;
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 12) ] = trpt->bup.oval;
 		;
 		goto R999;
 ;
@@ -83,7 +83,7 @@
 		
 	case 18: /* STATE 25 */
 		;
-		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = trpt->bup.oval;
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 12) ] = trpt->bup.oval;
 		;
 		goto R999;
 
@@ -98,7 +98,7 @@
 
 	case 20: /* STATE 2 */
 		;
-		now.enter[ Index(((P0 *)this)->_pid, 2) ] = trpt->bup.oval;
+		now.enter[ Index(((P0 *)this)->_pid, 12) ] = trpt->bup.oval;
 		;
 		goto R999;
 ;
@@ -120,7 +120,7 @@
 
 	case 25: /* STATE 7 */
 		;
-		now.enter[ Index(((P0 *)this)->_pid, 2) ] = trpt->bup.oval;
+		now.enter[ Index(((P0 *)this)->_pid, 12) ] = trpt->bup.oval;
 		;
 		goto R999;
 ;
