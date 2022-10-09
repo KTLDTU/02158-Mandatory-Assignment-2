@@ -15,7 +15,7 @@
 		;
 		goto R999;
 
-		 /* PROC Coordinator */
+		 /* PROC C */
 
 	case 6: /* STATE 1 */
 		;
@@ -29,25 +29,65 @@
 		
 	case 9: /* STATE 4 */
 		;
-		now.ok[ Index(((P1 *)this)->_2_i, 5) ] = trpt->bup.oval;
-		;
-		goto R999;
-;
-		;
-		
-	case 11: /* STATE 6 */
-		;
-		now.ok[ Index(((P1 *)this)->_2_i, 5) ] = trpt->bup.oval;
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ] = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 12: /* STATE 9 */
+	case 10: /* STATE 15 */
+		;
+		((P1 *)this)->_2_i = trpt->bup.ovals[2];
+		((P1 *)this)->_2_maxIndex = trpt->bup.ovals[1];
+	/* 0 */	((P1 *)this)->_2_maxIndex = trpt->bup.ovals[0];
+		;
+		;
+		ungrab_ints(trpt->bup.ovals, 3);
+		goto R999;
+
+	case 11: /* STATE 15 */
+		;
+		((P1 *)this)->_2_i = trpt->bup.ovals[2];
+		((P1 *)this)->_2_maxIndex = trpt->bup.ovals[1];
+	/* 0 */	((P1 *)this)->_2_maxIndex = trpt->bup.ovals[0];
+		;
+		;
+		ungrab_ints(trpt->bup.ovals, 3);
+		goto R999;
+
+	case 12: /* STATE 15 */
 		;
 		((P1 *)this)->_2_i = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 13: /* STATE 18 */
+	case 13: /* STATE 15 */
+		;
+		((P1 *)this)->_2_i = trpt->bup.oval;
+		;
+		goto R999;
+;
+		;
+		
+	case 15: /* STATE 22 */
+		;
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 16: /* STATE 23 */
+		;
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ] = trpt->bup.oval;
+		;
+		goto R999;
+;
+		;
+		
+	case 18: /* STATE 25 */
+		;
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 19: /* STATE 31 */
 		;
 		p_restor(II);
 		;
@@ -56,15 +96,15 @@
 
 		 /* PROC P */
 
-	case 14: /* STATE 2 */
+	case 20: /* STATE 2 */
 		;
-		now.enter[ Index(((P0 *)this)->_pid, 5) ] = trpt->bup.oval;
+		now.enter[ Index(((P0 *)this)->_pid, 2) ] = trpt->bup.oval;
 		;
 		goto R999;
 ;
 		;
 		
-	case 16: /* STATE 4 */
+	case 22: /* STATE 4 */
 		;
 		now.incrit = trpt->bup.oval;
 		;
@@ -72,21 +112,21 @@
 ;
 		;
 		
-	case 18: /* STATE 6 */
+	case 24: /* STATE 6 */
 		;
 		now.incrit = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 19: /* STATE 7 */
+	case 25: /* STATE 7 */
 		;
-		now.enter[ Index(((P0 *)this)->_pid, 5) ] = trpt->bup.oval;
+		now.enter[ Index(((P0 *)this)->_pid, 2) ] = trpt->bup.oval;
 		;
 		goto R999;
 ;
 		;
 		
-	case 21: /* STATE 18 */
+	case 27: /* STATE 18 */
 		;
 		p_restor(II);
 		;

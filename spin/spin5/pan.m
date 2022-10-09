@@ -93,92 +93,215 @@
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
-		 /* PROC Coordinator */
-	case 6: /* STATE 1 - spin5.pml:52 - [i = 0] (0:0:1 - 1) */
+		 /* PROC C */
+	case 6: /* STATE 1 - spin5.pml:54 - [i = 0] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[1][1] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->_2_i;
 		((P1 *)this)->_2_i = 0;
 #ifdef VAR_RANGES
-		logval("Coordinator:i", ((P1 *)this)->_2_i);
+		logval("C:i", ((P1 *)this)->_2_i);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 7: /* STATE 2 - spin5.pml:52 - [((i<=(5-1)))] (0:0:0 - 1) */
+	case 7: /* STATE 2 - spin5.pml:54 - [((i<=(2-1)))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[1][2] = 1;
-		if (!((((P1 *)this)->_2_i<=(5-1))))
+		if (!((((P1 *)this)->_2_i<=(2-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 8: /* STATE 3 - spin5.pml:55 - [((enter[i]==1))] (0:0:0 - 1) */
+	case 8: /* STATE 3 - spin5.pml:56 - [(enter[i])] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[1][3] = 1;
-		if (!((((int)now.enter[ Index(((P1 *)this)->_2_i, 5) ])==1)))
+		if (!(((int)now.enter[ Index(((P1 *)this)->_2_i, 2) ])))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 9: /* STATE 4 - spin5.pml:55 - [ok[i] = 1] (0:0:1 - 1) */
+	case 9: /* STATE 4 - spin5.pml:56 - [age[i] = (age[i]+1)] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[1][4] = 1;
-		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_i, 5) ]);
-		now.ok[ Index(((P1 *)this)->_2_i, 5) ] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ];
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ] = (((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ]+1);
 #ifdef VAR_RANGES
-		logval("ok[Coordinator:i]", ((int)now.ok[ Index(((P1 *)this)->_2_i, 5) ]));
+		logval("C:age[C:i]", ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 10: /* STATE 5 - spin5.pml:56 - [(!(enter[i]))] (0:0:0 - 1) */
+	case 10: /* STATE 5 - spin5.pml:59 - [((maxIndex==-(1)))] (18:0:3 - 1) */
 		IfNotBlocked
 		reached[1][5] = 1;
-		if (!( !(((int)now.enter[ Index(((P1 *)this)->_2_i, 5) ]))))
+		if (!((((P1 *)this)->_2_maxIndex== -(1))))
 			continue;
-		_m = 3; goto P999; /* 0 */
-	case 11: /* STATE 6 - spin5.pml:56 - [ok[i] = 0] (0:0:1 - 1) */
-		IfNotBlocked
+		/* dead 1: _2_maxIndex */  (trpt+1)->bup.ovals = grab_ints(3);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->_2_maxIndex;
+#ifdef HAS_CODE
+		if (!readtrail)
+#endif
+			((P1 *)this)->_2_maxIndex = 0;
+		/* merge: maxIndex = i(18, 6, 18) */
 		reached[1][6] = 1;
-		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_i, 5) ]);
-		now.ok[ Index(((P1 *)this)->_2_i, 5) ] = 0;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->_2_maxIndex;
+		((P1 *)this)->_2_maxIndex = ((P1 *)this)->_2_i;
 #ifdef VAR_RANGES
-		logval("ok[Coordinator:i]", ((int)now.ok[ Index(((P1 *)this)->_2_i, 5) ]));
+		logval("C:maxIndex", ((P1 *)this)->_2_maxIndex);
 #endif
 		;
-		_m = 3; goto P999; /* 0 */
-	case 12: /* STATE 9 - spin5.pml:52 - [i = (i+1)] (0:12:1 - 2) */
+		/* merge: .(goto)(18, 12, 18) */
+		reached[1][12] = 1;
+		;
+		/* merge: .(goto)(18, 14, 18) */
+		reached[1][14] = 1;
+		;
+		/* merge: i = (i+1)(18, 15, 18) */
+		reached[1][15] = 1;
+		(trpt+1)->bup.ovals[2] = ((P1 *)this)->_2_i;
+		((P1 *)this)->_2_i = (((P1 *)this)->_2_i+1);
+#ifdef VAR_RANGES
+		logval("C:i", ((P1 *)this)->_2_i);
+#endif
+		;
+		/* merge: .(goto)(0, 19, 18) */
+		reached[1][19] = 1;
+		;
+		_m = 3; goto P999; /* 5 */
+	case 11: /* STATE 7 - spin5.pml:60 - [(((maxIndex!=-(1))&&(age[maxIndex]<age[i])))] (18:0:3 - 1) */
 		IfNotBlocked
-		reached[1][9] = 1;
+		reached[1][7] = 1;
+		if (!(((((P1 *)this)->_2_maxIndex!= -(1))&&(((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ]<((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_i, 2) ]))))
+			continue;
+		/* dead 1: _2_maxIndex */  (trpt+1)->bup.ovals = grab_ints(3);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->_2_maxIndex;
+#ifdef HAS_CODE
+		if (!readtrail)
+#endif
+			((P1 *)this)->_2_maxIndex = 0;
+		/* merge: maxIndex = i(18, 8, 18) */
+		reached[1][8] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->_2_maxIndex;
+		((P1 *)this)->_2_maxIndex = ((P1 *)this)->_2_i;
+#ifdef VAR_RANGES
+		logval("C:maxIndex", ((P1 *)this)->_2_maxIndex);
+#endif
+		;
+		/* merge: .(goto)(18, 12, 18) */
+		reached[1][12] = 1;
+		;
+		/* merge: .(goto)(18, 14, 18) */
+		reached[1][14] = 1;
+		;
+		/* merge: i = (i+1)(18, 15, 18) */
+		reached[1][15] = 1;
+		(trpt+1)->bup.ovals[2] = ((P1 *)this)->_2_i;
+		((P1 *)this)->_2_i = (((P1 *)this)->_2_i+1);
+#ifdef VAR_RANGES
+		logval("C:i", ((P1 *)this)->_2_i);
+#endif
+		;
+		/* merge: .(goto)(0, 19, 18) */
+		reached[1][19] = 1;
+		;
+		_m = 3; goto P999; /* 5 */
+	case 12: /* STATE 10 - spin5.pml:61 - [(1)] (18:0:1 - 1) */
+		IfNotBlocked
+		reached[1][10] = 1;
+		if (!(1))
+			continue;
+		/* merge: .(goto)(18, 12, 18) */
+		reached[1][12] = 1;
+		;
+		/* merge: .(goto)(18, 14, 18) */
+		reached[1][14] = 1;
+		;
+		/* merge: i = (i+1)(18, 15, 18) */
+		reached[1][15] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->_2_i;
 		((P1 *)this)->_2_i = (((P1 *)this)->_2_i+1);
 #ifdef VAR_RANGES
-		logval("Coordinator:i", ((P1 *)this)->_2_i);
+		logval("C:i", ((P1 *)this)->_2_i);
 #endif
 		;
-		/* merge: .(goto)(0, 13, 12) */
-		reached[1][13] = 1;
+		/* merge: .(goto)(0, 19, 18) */
+		reached[1][19] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 13: /* STATE 15 - spin5.pml:54 - [i = (i+1)] (0:18:1 - 5) */
+		IfNotBlocked
+		reached[1][15] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->_2_i;
+		((P1 *)this)->_2_i = (((P1 *)this)->_2_i+1);
+#ifdef VAR_RANGES
+		logval("C:i", ((P1 *)this)->_2_i);
+#endif
+		;
+		/* merge: .(goto)(0, 19, 18) */
+		reached[1][19] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 13: /* STATE 18 - spin5.pml:60 - [-end-] (0:0:0 - 1) */
+	case 14: /* STATE 21 - spin5.pml:67 - [((maxIndex>-(1)))] (0:0:0 - 1) */
 		IfNotBlocked
-		reached[1][18] = 1;
+		reached[1][21] = 1;
+		if (!((((P1 *)this)->_2_maxIndex> -(1))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 15: /* STATE 22 - spin5.pml:67 - [ok[maxIndex] = 1] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[1][22] = 1;
+		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]);
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = 1;
+#ifdef VAR_RANGES
+		logval("ok[C:maxIndex]", ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]));
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 16: /* STATE 23 - spin5.pml:68 - [age[maxIndex] = 0] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[1][23] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ];
+		((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ] = 0;
+#ifdef VAR_RANGES
+		logval("C:age[C:maxIndex]", ((P1 *)this)->_2_age[ Index(((P1 *)this)->_2_maxIndex, 2) ]);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 17: /* STATE 24 - spin5.pml:69 - [(!(enter[maxIndex]))] (0:0:0 - 1) */
+		IfNotBlocked
+		reached[1][24] = 1;
+		if (!( !(((int)now.enter[ Index(((P1 *)this)->_2_maxIndex, 2) ]))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 18: /* STATE 25 - spin5.pml:69 - [ok[maxIndex] = 0] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[1][25] = 1;
+		(trpt+1)->bup.oval = ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]);
+		now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ] = 0;
+#ifdef VAR_RANGES
+		logval("ok[C:maxIndex]", ((int)now.ok[ Index(((P1 *)this)->_2_maxIndex, 2) ]));
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 19: /* STATE 31 - spin5.pml:72 - [-end-] (0:0:0 - 1) */
+		IfNotBlocked
+		reached[1][31] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
 		 /* PROC P */
-	case 14: /* STATE 2 - spin5.pml:27 - [enter[_pid] = 1] (0:0:1 - 1) */
+	case 20: /* STATE 2 - spin5.pml:27 - [enter[_pid] = 1] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[0][2] = 1;
-		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 5) ]);
-		now.enter[ Index(((P0 *)this)->_pid, 5) ] = 1;
+		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]);
+		now.enter[ Index(((P0 *)this)->_pid, 2) ] = 1;
 #ifdef VAR_RANGES
-		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 5) ]));
+		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 15: /* STATE 3 - spin5.pml:28 - [(ok[_pid])] (0:0:0 - 1) */
+	case 21: /* STATE 3 - spin5.pml:28 - [(ok[_pid])] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][3] = 1;
-		if (!(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 5) ])))
+		if (!(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 2) ])))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 16: /* STATE 4 - spin5.pml:31 - [incrit = (incrit+1)] (0:0:1 - 1) */
+	case 22: /* STATE 4 - spin5.pml:31 - [incrit = (incrit+1)] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[0][4] = 1;
 		(trpt+1)->bup.oval = now.incrit;
@@ -188,12 +311,12 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 17: /* STATE 5 - spin5.pml:32 - [assert((incrit==1))] (0:0:0 - 1) */
+	case 23: /* STATE 5 - spin5.pml:32 - [assert((incrit==1))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][5] = 1;
 		spin_assert((now.incrit==1), "(incrit==1)", II, tt, t);
 		_m = 3; goto P999; /* 0 */
-	case 18: /* STATE 6 - spin5.pml:33 - [incrit = (incrit-1)] (0:0:1 - 1) */
+	case 24: /* STATE 6 - spin5.pml:33 - [incrit = (incrit-1)] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[0][6] = 1;
 		(trpt+1)->bup.oval = now.incrit;
@@ -203,23 +326,23 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 19: /* STATE 7 - spin5.pml:37 - [enter[_pid] = 0] (0:0:1 - 1) */
+	case 25: /* STATE 7 - spin5.pml:37 - [enter[_pid] = 0] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[0][7] = 1;
-		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 5) ]);
-		now.enter[ Index(((P0 *)this)->_pid, 5) ] = 0;
+		(trpt+1)->bup.oval = ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]);
+		now.enter[ Index(((P0 *)this)->_pid, 2) ] = 0;
 #ifdef VAR_RANGES
-		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 5) ]));
+		logval("enter[_pid]", ((int)now.enter[ Index(((int)((P0 *)this)->_pid), 2) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 20: /* STATE 8 - spin5.pml:38 - [(!(ok[_pid]))] (0:0:0 - 1) */
+	case 26: /* STATE 8 - spin5.pml:38 - [(!(ok[_pid]))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][8] = 1;
-		if (!( !(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 5) ]))))
+		if (!( !(((int)now.ok[ Index(((int)((P0 *)this)->_pid), 2) ]))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 21: /* STATE 18 - spin5.pml:44 - [-end-] (0:0:0 - 1) */
+	case 27: /* STATE 18 - spin5.pml:44 - [-end-] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][18] = 1;
 		if (!delproc(1, II)) continue;

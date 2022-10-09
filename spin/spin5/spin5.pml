@@ -35,7 +35,7 @@ crit:	/* Critical section */
 exit: 
 		/* Your code here */
 		enter[_pid] = false;
-		/*await*/ !(ok[_pid]) ->
+		/*await*/ !(ok[_pid]) -> 
 
 		/* Non-critical setion (may or may not terminate) */
 		do :: true -> skip :: break od
@@ -43,19 +43,31 @@ exit:
 	od;
 }
 
-active proctype Coordinator()
+active proctype C()
 {
+	int age[N];
 	do
 	::	
 		/*  Your code here instead of skip*/
 		int i;
+		int maxIndex = -1;
 		for (i : 0.. N-1) {
-			
 			if
-				:: enter[i] == true -> ok[i] = true; 
-				/*await*/ !(enter[i]) -> ok[i] = false
+				:: enter[i] -> age[i]++;
+
+				if 
+					:: maxIndex == -1 -> maxIndex = i
+					:: (maxIndex != -1 && age[maxIndex] < age[i]) -> maxIndex = i
+					:: else -> skip
+				fi;
+
 			fi
-		}
+		}	
+		if
+			:: maxIndex > -1 -> ok[maxIndex] = true; 
+			age[maxIndex] = 0;
+			!(enter[maxIndex]) -> ok[maxIndex] = false
+		fi;
 	od
 }
 
