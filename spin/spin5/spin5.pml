@@ -43,7 +43,7 @@ exit:
 	od;
 }
 
-active proctype C()
+active proctype Coordinator()
 {
 	int age[N];
 	do
