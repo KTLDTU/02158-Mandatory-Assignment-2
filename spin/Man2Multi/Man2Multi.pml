@@ -13,7 +13,7 @@ active [N] proctype Car() {
 	int temp;
 do
 	:: _pid == 0 -> assert(!(up > 0 && down > 0));
-	:: skip;
+	:: _pid > 0 -> skip;
 
 enter:
 	 if

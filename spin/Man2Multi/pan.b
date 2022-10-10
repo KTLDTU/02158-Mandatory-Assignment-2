@@ -9,8 +9,10 @@
 		;
 		;
 		;
+		;
+		;
 		
-	case 6: /* STATE 6 */
+	case 7: /* STATE 7 */
 		;
 		now.downSem = trpt->bup.oval;
 		;
@@ -18,31 +20,31 @@
 ;
 		;
 		
-	case 8: /* STATE 10 */
+	case 9: /* STATE 11 */
 		;
 		now.upSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 9: /* STATE 16 */
-		;
-		((P0 *)this)->_1_temp = trpt->bup.oval;
 		;
 		goto R999;
 
 	case 10: /* STATE 17 */
 		;
-		now.down = trpt->bup.oval;
+		((P0 *)this)->_1_temp = trpt->bup.oval;
 		;
 		goto R999;
 
 	case 11: /* STATE 18 */
 		;
+		now.down = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 12: /* STATE 19 */
+		;
 		now.downSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 12: /* STATE 22 */
+	case 13: /* STATE 23 */
 		;
 		now.upSem = trpt->bup.oval;
 		;
@@ -50,25 +52,25 @@
 ;
 		;
 		
-	case 14: /* STATE 26 */
+	case 15: /* STATE 27 */
 		;
 		now.downSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 15: /* STATE 32 */
-		;
-		((P0 *)this)->_1_temp = trpt->bup.oval;
 		;
 		goto R999;
 
 	case 16: /* STATE 33 */
 		;
-		now.up = trpt->bup.oval;
+		((P0 *)this)->_1_temp = trpt->bup.oval;
 		;
 		goto R999;
 
 	case 17: /* STATE 34 */
+		;
+		now.up = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 18: /* STATE 35 */
 		;
 		now.upSem = trpt->bup.oval;
 		;
@@ -76,13 +78,13 @@
 ;
 		;
 		
-	case 19: /* STATE 39 */
+	case 20: /* STATE 40 */
 		;
 		((P0 *)this)->_1_temp = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 20: /* STATE 40 */
+	case 21: /* STATE 41 */
 		;
 		now.down = trpt->bup.oval;
 		;
@@ -90,19 +92,19 @@
 ;
 		;
 		
-	case 22: /* STATE 42 */
+	case 23: /* STATE 43 */
 		;
 		now.upSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 23: /* STATE 49 */
+	case 24: /* STATE 50 */
 		;
 		((P0 *)this)->_1_temp = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 24: /* STATE 50 */
+	case 25: /* STATE 51 */
 		;
 		now.up = trpt->bup.oval;
 		;
@@ -110,13 +112,13 @@
 ;
 		;
 		
-	case 26: /* STATE 52 */
+	case 27: /* STATE 53 */
 		;
 		now.downSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 27: /* STATE 63 */
+	case 28: /* STATE 64 */
 		;
 		p_restor(II);
 		;
