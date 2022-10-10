@@ -7,11 +7,6 @@ int downSem = 1;
 int up = 0;
 int down = 0;
 
-int inDownSem = 1;
-int inUpSem = 1;
-
-
-
 /* Alley safety property: up == 0 || down == 0) */
 
 active [N] proctype Car() {
@@ -23,40 +18,31 @@ do
 enter:
 	 if
 		:: _pid < 5 -> P(downSem);
-		P(inDownSem);
-		if 
+		atomic { if 
 			:: down == 0 -> P(upSem); down++;
 			:: else -> down++; skip;
-		fi; 
-		V(inDownSem);
-		
+		fi; }
 		V(downSem);
 		:: else -> P(upSem);
-		P(inUpSem);
-		if
+		atomic {if
 			:: up == 0 -> P(downSem); up++;
 			:: else -> up++; skip
-		fi;
-		V(inUpSem);
-
+		fi; }
 		V(upSem);
 	fi;
 
 leave:
 	if
-		:: _pid < 5 -> P(inDownSem);
-		if 
+		:: _pid < 5 -> atomic { down--; 
+		if -
 			:: down == 0 -> V(upSem)
 			:: else -> skip;
-		fi; 
-		V(inDownSem);
-		:: else ->  P(inUpSem);
-		up--;
+		fi; }
+		:: else -> atomic { up--;
 		if
 			:: up == 0 -> V(downSem)
 			:: else -> skip
-		fi;
-		V(inUpSem);
+		fi;}
 	fi;
 od;
 }
