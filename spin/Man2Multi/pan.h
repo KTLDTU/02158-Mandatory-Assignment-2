@@ -1,5 +1,5 @@
 #define SpinVersion	"Spin Version 6.1.0 -- 4 May 2011"
-#define PanSource	"Man2Multi.pml"
+#define PanSource	"Man2Safe.pml"
 
 #define G_long	8
 #define G_int	4
@@ -71,33 +71,33 @@ typedef struct S_F_MAP {
 	char *fnm; int from; int upto;
 } S_F_MAP;
 
-#define nstates0	65	/* Car */
-#define endstate0	64
+#define nstates0	67	/* Car */
+#define endstate0	66
 short src_ln0 [] = {
 	  0,  15,  15,  16,  16,  20,  20,  20, 
-	 20,  22,  22,  22,  22,  22,  22,  23, 
-	 23,  23,  21,  25,  25,  25,  26,  26, 
-	 26,  26,  28,  28,  28,  28,  28,  28, 
-	 29,  29,  29,  27,  31,  31,  31,  19, 
+	 20,  22,  22,  22,  22,  22,  23,  23, 
+	 23,  21,  24,  21,  25,  25,  26,  26, 
+	 26,  26,  28,  28,  28,  28,  28,  29, 
+	 29,  29,  27,  30,  27,  31,  31,  19, 
 	 34,  36,  36,  38,  38,  38,  39,  39, 
-	 37,  41,  41,  41,  43,  43,  43,  44, 
-	 44,  42,  46,  35,  47,  14,  48,  14, 
-	 48,   0, };
+	 37,  40,  36,  41,  41,  43,  43,  43, 
+	 44,  44,  42,  45,  41,  35,  47,  14, 
+	 48,  14,  48,   0, };
 S_F_MAP src_file0 [] = {
 	{ "-", 0, 0 },
-	{ "Man2Multi.pml", 1, 64 },
-	{ "-", 65, 66 }
+	{ "Man2Safe.pml", 1, 66 },
+	{ "-", 67, 68 }
 };
 uchar reached0 [] = {
 	  0,   1,   0,   1,   1,   1,   1,   0, 
-	  0,   1,   1,   0,   1,   0,   0,   1, 
-	  0,   1,   0,   1,   1,   0,   1,   1, 
+	  0,   1,   1,   0,   0,   0,   1,   0, 
+	  0,   1,   1,   0,   1,   0,   1,   1, 
+	  0,   0,   1,   1,   0,   0,   0,   1, 
 	  0,   0,   1,   1,   0,   1,   0,   0, 
-	  1,   0,   1,   0,   1,   1,   0,   0, 
-	  1,   1,   0,   1,   1,   0,   1,   1, 
-	  0,   1,   1,   0,   1,   1,   0,   1, 
-	  1,   0,   1,   0,   1,   0,   1,   1, 
-	  0,   0, };
+	  1,   1,   1,   1,   1,   0,   1,   0, 
+	  0,   1,   0,   1,   1,   1,   1,   0, 
+	  1,   0,   0,   1,   0,   0,   1,   0, 
+	  1,   1,   0,   0, };
 uchar *loopstate0;
 struct {
 	int tp; short *src;
@@ -113,8 +113,8 @@ struct {
 } code_lookup[] = {
 	{ (char *) 0, "" }
 };
-#define _T5	25
-#define _T2	26
+#define _T5	33
+#define _T2	34
 #define T_ID	unsigned char
 #define WS		8 /* word size in bytes */
 #define SYNC	0
@@ -423,7 +423,7 @@ uchar *loopstate1;  /* np_ */
 #define endstate1	2 /* np_ */
 
 #define start1	0 /* np_ */
-#define start0	61
+#define start0	63
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
@@ -554,7 +554,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	27
+#define NTRANS	35
 #ifdef PEG
 	long peg[NTRANS];
 #endif

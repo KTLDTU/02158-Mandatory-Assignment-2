@@ -18,31 +18,31 @@ do
 enter:
 	 if
 		:: _pid < 5 -> P(downSem);
-		if 
-			:: down == 0 -> atomic { P(upSem); down++;}
+		atomic { if 
+			:: down == 0 -> P(upSem); down++;
 			:: else -> down++; skip;
-		fi;
+		fi; }
 		V(downSem);
 		:: else -> P(upSem);
-		if
-			:: up == 0 -> atomic { P(downSem); up++; }
+		atomic {if
+			:: up == 0 -> P(downSem); up++;
 			:: else -> up++; skip
-		fi;
+		fi; }
 		V(upSem);
 	fi;
 
 leave:
 	if
-		:: _pid < 5 -> down--;
+		:: _pid < 5 -> atomic { down--; 
 		if 
 			:: down == 0 -> V(upSem)
 			:: else -> skip;
-		fi;
-		:: else -> up--;
+		fi; }
+		:: else -> atomic { up--;
 		if
 			:: up == 0 -> V(downSem)
 			:: else -> skip
-		fi;
+		fi;}
 	fi;
 od;
 }
