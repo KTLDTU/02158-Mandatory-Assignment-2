@@ -9,8 +9,10 @@
 		;
 		;
 		;
+		;
+		;
 		
-	case 6: /* STATE 6 */
+	case 7: /* STATE 7 */
 		;
 		now.downSem = trpt->bup.oval;
 		;
@@ -18,31 +20,27 @@
 ;
 		;
 		
-	case 8: /* STATE 10 */
+	case 9: /* STATE 13 */
 		;
-		now.upSem = trpt->bup.oval;
+		now.down = trpt->bup.ovals[1];
+		now.upSem = trpt->bup.ovals[0];
 		;
+		ungrab_ints(trpt->bup.ovals, 2);
 		goto R999;
 
-	case 9: /* STATE 16 */
-		;
-		((P0 *)this)->_1_temp = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 10: /* STATE 17 */
+	case 10: /* STATE 16 */
 		;
 		now.down = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 11: /* STATE 18 */
+	case 11: /* STATE 20 */
 		;
 		now.downSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 12: /* STATE 22 */
+	case 12: /* STATE 24 */
 		;
 		now.upSem = trpt->bup.oval;
 		;
@@ -50,25 +48,21 @@
 ;
 		;
 		
-	case 14: /* STATE 26 */
+	case 14: /* STATE 30 */
 		;
-		now.downSem = trpt->bup.oval;
+		now.up = trpt->bup.ovals[1];
+		now.downSem = trpt->bup.ovals[0];
 		;
+		ungrab_ints(trpt->bup.ovals, 2);
 		goto R999;
 
-	case 15: /* STATE 32 */
-		;
-		((P0 *)this)->_1_temp = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 16: /* STATE 33 */
+	case 15: /* STATE 33 */
 		;
 		now.up = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 17: /* STATE 34 */
+	case 16: /* STATE 37 */
 		;
 		now.upSem = trpt->bup.oval;
 		;
@@ -76,13 +70,7 @@
 ;
 		;
 		
-	case 19: /* STATE 39 */
-		;
-		((P0 *)this)->_1_temp = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 20: /* STATE 40 */
+	case 18: /* STATE 42 */
 		;
 		now.down = trpt->bup.oval;
 		;
@@ -90,19 +78,13 @@
 ;
 		;
 		
-	case 22: /* STATE 42 */
+	case 20: /* STATE 44 */
 		;
 		now.upSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 23: /* STATE 49 */
-		;
-		((P0 *)this)->_1_temp = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 24: /* STATE 50 */
+	case 21: /* STATE 51 */
 		;
 		now.up = trpt->bup.oval;
 		;
@@ -110,13 +92,13 @@
 ;
 		;
 		
-	case 26: /* STATE 52 */
+	case 23: /* STATE 53 */
 		;
 		now.downSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 27: /* STATE 63 */
+	case 24: /* STATE 64 */
 		;
 		p_restor(II);
 		;

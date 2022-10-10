@@ -71,33 +71,33 @@ typedef struct S_F_MAP {
 	char *fnm; int from; int upto;
 } S_F_MAP;
 
-#define nstates0	64	/* Car */
-#define endstate0	63
+#define nstates0	65	/* Car */
+#define endstate0	64
 short src_ln0 [] = {
-	  0,  15,  15,  16,  20,  20,  20,  20, 
-	 22,  22,  22,  22,  23,  23,  21,  25, 
-	 25,  26,  27,  27,  28,  28,  28,  28, 
-	 30,  30,  30,  30,  31,  31,  29,  33, 
-	 33,  34,  35,  35,  19,  38,  40,  40, 
-	 41,  43,  43,  43,  44,  44,  42,  46, 
-	 46,  46,  47,  49,  49,  49,  50,  50, 
-	 48,  52,  39,  53,  14,  54,  14,  54, 
-	  0, };
+	  0,  15,  15,  16,  16,  20,  20,  20, 
+	 20,  22,  22,  22,  22,  22,  22,  23, 
+	 23,  23,  21,  25,  25,  25,  26,  26, 
+	 26,  26,  28,  28,  28,  28,  28,  28, 
+	 29,  29,  29,  27,  31,  31,  31,  19, 
+	 34,  36,  36,  38,  38,  38,  39,  39, 
+	 37,  41,  41,  41,  43,  43,  43,  44, 
+	 44,  42,  46,  35,  47,  14,  48,  14, 
+	 48,   0, };
 S_F_MAP src_file0 [] = {
 	{ "-", 0, 0 },
-	{ "Man2Multi.pml", 1, 63 },
-	{ "-", 64, 65 }
+	{ "Man2Multi.pml", 1, 64 },
+	{ "-", 65, 66 }
 };
 uchar reached0 [] = {
-	  0,   1,   0,   1,   1,   1,   0,   0, 
-	  1,   1,   0,   0,   1,   1,   0,   1, 
-	  0,   0,   1,   0,   1,   1,   0,   0, 
-	  1,   1,   0,   0,   1,   1,   0,   1, 
-	  0,   0,   1,   0,   0,   1,   1,   0, 
+	  0,   1,   0,   1,   1,   1,   1,   0, 
+	  0,   1,   1,   0,   1,   0,   0,   1, 
+	  0,   1,   0,   1,   1,   0,   1,   1, 
+	  0,   0,   1,   1,   0,   1,   0,   0, 
+	  1,   0,   1,   0,   1,   1,   0,   0, 
+	  1,   1,   0,   1,   1,   0,   1,   1, 
 	  0,   1,   1,   0,   1,   1,   0,   1, 
-	  1,   0,   0,   1,   1,   0,   1,   1, 
-	  0,   1,   0,   1,   0,   1,   1,   0, 
-	  0, };
+	  1,   0,   1,   0,   1,   0,   1,   1, 
+	  0,   0, };
 uchar *loopstate0;
 struct {
 	int tp; short *src;
@@ -113,8 +113,8 @@ struct {
 } code_lookup[] = {
 	{ (char *) 0, "" }
 };
-#define _T5	28
-#define _T2	29
+#define _T5	25
+#define _T2	26
 #define T_ID	unsigned char
 #define WS		8 /* word size in bytes */
 #define SYNC	0
@@ -144,14 +144,14 @@ int Btypes[] = {
 typedef struct P0 { /* Car */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 2; /* proctype */
-	unsigned _p   : 7; /* state    */
+	unsigned _p   : 8; /* state    */
 	int _1_temp;
 } P0;
 #define Air0	(sizeof(P0) - Offsetof(P0, _1_temp) - 1*sizeof(int))
 typedef struct P1 { /* np_ */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 2; /* proctype */
-	unsigned _p   : 7; /* state    */
+	unsigned _p   : 8; /* state    */
 } P1;
 #define Air1	(sizeof(P1) - 3)
 
@@ -423,7 +423,7 @@ uchar *loopstate1;  /* np_ */
 #define endstate1	2 /* np_ */
 
 #define start1	0 /* np_ */
-#define start0	60
+#define start0	61
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
@@ -554,7 +554,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	30
+#define NTRANS	27
 #ifdef PEG
 	long peg[NTRANS];
 #endif
