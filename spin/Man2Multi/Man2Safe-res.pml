@@ -74,5 +74,5 @@ od;
 }
 
 //ltl obl1  { [] (((P1@enter) && [] (!P2@entry) ) -> <> (P1@crit)) } 
-//ltl res   { [] ( (P[1]@entry || P2@entry) -> <> (P1@crit || P2@crit) ) }
-ltl fair1 { ([] ( (Car[6]@entryDownEnter) -> <>  (Car[6]@critDownEnter) ) ) && ([] ( (Car[6]@entryDownLeave) -> <>  (Car[6]@critDownLeave) ) ) }
+ltl res   { [] ( (Car[1]@entryDownEnter || Car[2]@entryDownEnter || Car[3]@entryDownEnter || Car[4]@entryDownEnter) -> <> (Car[1]@critDownEnter || Car[2]@critDownEnter || Car[3]@critDownEnter || Car[4]@critDownEnter) ) }
+//ltl fair1 { ([] ( (Car[6]@entryDownEnter) -> <>  (Car[6]@critDownEnter) ) ) && ([] ( (Car[6]@entryDownLeave) -> <>  (Car[6]@critDownLeave) ) ) }

@@ -1,0 +1,1 @@
+ltl fair1 { [] ( (P[1]@entryDown) -> <>  (P[1]@critDown) ) }
