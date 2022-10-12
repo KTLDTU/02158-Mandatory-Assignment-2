@@ -23,7 +23,7 @@ public class MultiAlley2 extends Alley {
             if (down == 0) {
                 upSem.P();    // block for up-going cars
             }
-            Thread.sleep(1000);
+            Thread.sleep(1200);
             down++;
             downSem.V();
         } else {
@@ -38,9 +38,8 @@ public class MultiAlley2 extends Alley {
     }
 
     /* Register that car no. has left the alley */
-    public void leave(int no) throws InterruptedException {
+    public void leave(int no) {
         if (no < 5) {
-            Thread.sleep(200);
             down--;
             if (down == 0) upSem.V();    // enable up-going cars again
         } else {
