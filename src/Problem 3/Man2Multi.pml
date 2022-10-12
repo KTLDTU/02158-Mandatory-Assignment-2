@@ -7,7 +7,7 @@ int downSem = 1;
 int up = 0;
 int down = 0;
 
-/* Alley safety property: up == 0 || down == 0) */
+/* Alley safety property: !(up > 0 && down > 0) */
 
 active [N] proctype Car() {
 	int temp;
