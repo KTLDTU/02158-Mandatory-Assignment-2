@@ -9,9 +9,8 @@ int down = 0;
 
 int inDownSem = 1;
 int inUpSem = 1;
-int inEnterSem = 1;
 
-/* Alley safety property: up == 0 || down == 0) */
+/* Alley safety property: (up == 0 || down == 0) */
 
 active [N] proctype Car() {
 	int temp;
@@ -22,34 +21,29 @@ do
 enter:
 	 if
 		:: _pid < 5 ->
-
-		P(inEnterSem);
 		P(downSem);
 		P(inDownSem);
 
 		if 
-			:: down == 0 -> P(upSem); down++;
-			:: else -> down++; skip;
+			:: down == 0 -> P(upSem); 
+			:: else -> skip;
 		fi;
-
+		down++;
 		V(inDownSem);
 		V(downSem);
-		V(inEnterSem);
 
 		:: else ->
 
-		P(inEnterSem);
 		P(upSem);
 		P(inUpSem);
 
 		if
-			:: up == 0 -> P(downSem); up++;
-			:: else -> up++; skip
+			:: up == 0 -> P(downSem); 
+			:: else -> skip
 		fi;
-
+		up++;
 		V(inUpSem);
 		V(upSem);
-		V(inEnterSem);
 	fi;
 
 leave:
