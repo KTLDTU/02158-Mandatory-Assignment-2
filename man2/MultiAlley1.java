@@ -21,15 +21,12 @@ public class MultiAlley1 extends Alley {
             downSem.P();
 //            Possible sleep location. After P(downSem), but before P(upSem)
 //            This allows up-going cars to do P(upSem) before down-going cars
-//            Thread.sleep(1000);
+            Thread.sleep(1000);
             if (down == 0) upSem.P();    // block for up-going cars
             down++;
             downSem.V();
         } else {
             upSem.P();
-//          Same principle as the solution above.
-//          Down-going cars take 1 lap around before the deadlock occurs
-            Thread.sleep(1000);
             if (up == 0) {
                 downSem.P();    // block for down-going cars
             }
