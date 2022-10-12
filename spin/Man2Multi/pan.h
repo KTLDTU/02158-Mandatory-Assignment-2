@@ -91,7 +91,7 @@ S_F_MAP src_file0 [] = {
 	{ "-", 81, 82 }
 };
 uchar reached0 [] = {
-	  0,   1,   1,   1,   1,   1,   1,   0, 
+	  0,   1,   0,   1,   1,   1,   1,   0, 
 	  0,   1,   0,   0,   1,   1,   0,   0, 
 	  1,   1,   0,   1,   0,   1,   0,   1, 
 	  0,   1,   1,   0,   0,   1,   0,   0, 
@@ -117,8 +117,8 @@ struct {
 } code_lookup[] = {
 	{ (char *) 0, "" }
 };
-#define _T5	32
-#define _T2	33
+#define _T5	33
+#define _T2	34
 #define T_ID	unsigned char
 #define WS		8 /* word size in bytes */
 #define SYNC	0
@@ -560,7 +560,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	34
+#define NTRANS	35
 #ifdef PEG
 	long peg[NTRANS];
 #endif

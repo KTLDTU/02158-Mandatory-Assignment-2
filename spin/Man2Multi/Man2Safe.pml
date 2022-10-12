@@ -10,12 +10,12 @@ int down = 0;
 int inDownSem = 1;
 int inUpSem = 1;
 
-/* Alley safety property: (up == 0 || down == 0) */
+/* Alley safety property: !(up > 0 && down > 0) */
 
 active [N] proctype Car() {
 	int temp;
 do
-	:: _pid == 0 -> break;
+	:: _pid == 0 -> assert(!(up > 0 && down > 0));
 	:: _pid > 0 -> skip;
 
 enter:
