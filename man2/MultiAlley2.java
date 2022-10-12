@@ -23,7 +23,7 @@ public class MultiAlley2 extends Alley {
             if (down == 0) {
                 upSem.P();    // block for up-going cars
             }
-            Thread.sleep(1200);
+            Thread.sleep(1000);
             down++;
             downSem.V();
         } else {
