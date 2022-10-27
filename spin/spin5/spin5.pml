@@ -4,7 +4,7 @@
  *     Skeleton PROMELA model of mutual exlusion by coordinator
  */
 
-#define N 12
+#define N 3
 
 bool enter[N];  /* Request to enter flags */
 bool ok[N];     /* Entry granted flags    */
@@ -34,8 +34,8 @@ crit:	/* Critical section */
   	
 exit: 
 		/* Your code here */
-		enter[_pid] = false;
-		/*await*/ !(ok[_pid]) -> 
+		ok[_pid] = false;
+		/*await !(ok[_pid]) ->  */
 
 		/* Non-critical setion (may or may not terminate) */
 		do :: true -> skip :: break od
@@ -43,7 +43,7 @@ exit:
 	od;
 }
 
-active proctype C()
+active proctype Coordinator()
 {
 	int age[N];
 	do
@@ -64,11 +64,12 @@ active proctype C()
 			fi
 		}	
 		if
-			:: maxIndex > -1 -> ok[maxIndex] = true; 
+			:: maxIndex > -1 -> enter[maxIndex] = false; 
 			age[maxIndex] = 0;
-			!(enter[maxIndex]) -> ok[maxIndex] = false
+			ok[maxIndex] = true;
+			!ok[maxIndex] ->
 		fi;
 	od
 }
 
-ltl fair0 { []( (P[0]@entry) -> <> (P[0]@crit) ) }
+ltl fair0 { []( (P[2]@entry) -> <> (P[2]@crit) ) }
