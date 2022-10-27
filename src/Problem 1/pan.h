@@ -94,38 +94,42 @@ uchar reached2 [] = {
 	  1,   0,   1,   0,   0, };
 uchar *loopstate2;
 
-#define nstates1	18	/* Coordinator */
-#define endstate1	17
+#define nstates1	32	/* Coordinator */
+#define endstate1	31
 short src_ln1 [] = {
-	  0,  51,  51,  52,  52,  55,  56,  57, 
-	 58,  59,  59,  54,  62,  62,  50,  88, 
-	 50,  88,   0, };
+	  0,  54,  54,  56,  56,  59,  59,  60, 
+	 60,  61,  61,  58,  64,  55,  65,  54, 
+	 65,  65,  65,  66,  65,  67,  67,  68, 
+	 69,  69,  66,  71,  49,  72,  49,  72, 
+	  0, };
 S_F_MAP src_file1 [] = {
 	{ "-", 0, 0 },
-	{ "spin5.pml", 1, 17 },
-	{ "-", 18, 19 }
+	{ "spin5.pml", 1, 31 },
+	{ "-", 32, 33 }
 };
 uchar reached1 [] = {
-	  0,   1,   0,   1,   1,   1,   0,   0, 
-	  0,   1,   0,   0,   1,   0,   0,   1, 
-	  1,   0,   0, };
+	  0,   1,   1,   1,   0,   1,   0,   1, 
+	  0,   1,   0,   0,   1,   0,   1,   0, 
+	  1,   1,   0,   1,   1,   1,   0,   0, 
+	  0,   0,   0,   1,   0,   1,   1,   0, 
+	  0, };
 uchar *loopstate1;
 
-#define nstates0	18	/* P */
-#define endstate0	17
+#define nstates0	19	/* P */
+#define endstate0	18
 short src_ln0 [] = {
 	  0,  24,  27,  28,  31,  32,  33,  37, 
-	 41,  41,  41,  41,  43,  41,  22,  44, 
-	 22,  44,   0, };
+	 38,  41,  41,  41,  41,  43,  41,  22, 
+	 44,  22,  44,   0, };
 S_F_MAP src_file0 [] = {
 	{ "-", 0, 0 },
-	{ "spin5.pml", 1, 17 },
-	{ "-", 18, 19 }
+	{ "spin5.pml", 1, 18 },
+	{ "-", 19, 20 }
 };
 uchar reached0 [] = {
 	  0,   1,   0,   0,   0,   0,   0,   0, 
-	  1,   1,   1,   0,   1,   1,   0,   1, 
-	  1,   0,   0, };
+	  0,   1,   1,   1,   0,   1,   1,   0, 
+	  1,   1,   0,   0, };
 uchar *loopstate0;
 struct {
 	int tp; short *src;
@@ -145,8 +149,8 @@ struct {
 } code_lookup[] = {
 	{ (char *) 0, "" }
 };
-#define _T5	21
-#define _T2	22
+#define _T5	28
+#define _T2	29
 #define T_ID	unsigned char
 #define WS		8 /* word size in bytes */
 #define SYNC	0
@@ -188,8 +192,10 @@ typedef struct P1 { /* Coordinator */
 	unsigned _t   : 3; /* proctype */
 	unsigned _p   : 6; /* state    */
 	int _2_i;
+	int _2_maxIndex;
+	int _2_age[3];
 } P1;
-#define Air1	(sizeof(P1) - Offsetof(P1, _2_i) - 1*sizeof(int))
+#define Air1	(sizeof(P1) - Offsetof(P1, _2_age) - 3*sizeof(int))
 #define PP	((P0 *)this)
 typedef struct P0 { /* P */
 	unsigned _pid : 8;  /* 0..255 */
@@ -430,8 +436,8 @@ typedef struct State {
 		unsigned short _event;
 	#endif
 #endif
-	uchar enter[4];
-	uchar ok[4];
+	uchar enter[3];
+	uchar ok[3];
 	int incrit;
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
@@ -472,8 +478,8 @@ uchar *loopstate3;  /* np_ */
 
 #define start3	0 /* np_ */
 #define start2	5
-#define start1	14
-#define start0	14
+#define start1	28
+#define start0	15
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
@@ -604,7 +610,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	23
+#define NTRANS	30
 #ifdef PEG
 	long peg[NTRANS];
 #endif

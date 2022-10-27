@@ -604,13 +604,27 @@ addproc(int calling_pid, int n)
 		break;
 	case 1:	/* Coordinator */
 		((P1 *)pptr(h))->_t = 1;
-		((P1 *)pptr(h))->_p = 14;
-		reached1[14]=1;
+		((P1 *)pptr(h))->_p = 28;
+		reached1[28]=1;
 		/* params: */
 		/* locals: */
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			((P1 *)pptr(h))->_2_age[l_in] = 0;
+		}
+	}
 		((P1 *)pptr(h))->_2_i = 0;
+		((P1 *)pptr(h))->_2_maxIndex =  -(1);
 #ifdef VAR_RANGES
 		logval("Coordinator:i", ((P1 *)pptr(h))->_2_i);
+		logval("Coordinator:maxIndex", ((P1 *)pptr(h))->_2_maxIndex);
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			logval("Coordinator:_2_age[l_in]", ((P1 *)pptr(h))->_2_age[l_in]);
+		}
+	}
 #endif
 #ifdef HAS_CODE
 		locinit1(h);
@@ -618,8 +632,8 @@ addproc(int calling_pid, int n)
 		break;
 	case 0:	/* P */
 		((P0 *)pptr(h))->_t = 0;
-		((P0 *)pptr(h))->_p = 14;
-		reached0[14]=1;
+		((P0 *)pptr(h))->_p = 15;
+		reached0[15]=1;
 		/* params: */
 		/* locals: */
 #ifdef VAR_RANGES
@@ -10653,13 +10667,13 @@ iniglobals(int calling_pid)
 		Maxbody += WS - (Maxbody % WS);
 
 	{	int l_in;
-		for (l_in = 0; l_in < 4; l_in++)
+		for (l_in = 0; l_in < 3; l_in++)
 		{
 			now.enter[l_in] = 0;
 		}
 	}
 	{	int l_in;
-		for (l_in = 0; l_in < 4; l_in++)
+		for (l_in = 0; l_in < 3; l_in++)
 		{
 			now.ok[l_in] = 0;
 		}
@@ -10667,13 +10681,13 @@ iniglobals(int calling_pid)
 		now.incrit = 0;
 #ifdef VAR_RANGES
 	{	int l_in;
-		for (l_in = 0; l_in < 4; l_in++)
+		for (l_in = 0; l_in < 3; l_in++)
 		{
 			logval("enter[l_in]", now.enter[l_in]);
 		}
 	}
 	{	int l_in;
-		for (l_in = 0; l_in < 4; l_in++)
+		for (l_in = 0; l_in < 3; l_in++)
 		{
 			logval("ok[l_in]", now.ok[l_in]);
 		}
@@ -11252,11 +11266,9 @@ active_procs(void)
 		Addproc(0);
 		Addproc(0);
 		Addproc(0);
-		Addproc(0);
 		Addproc(1);
 	} else {
 		Addproc(1);
-		Addproc(0);
 		Addproc(0);
 		Addproc(0);
 		Addproc(0);
@@ -12382,13 +12394,13 @@ c_globals(void)
 {	/* int i; */
 	printf("global vars:\n");
 	{	int l_in;
-		for (l_in = 0; l_in < 4; l_in++)
+		for (l_in = 0; l_in < 3; l_in++)
 		{
 			printf("	bit    enter[%d]:	%d\n", l_in, now.enter[l_in]);
 		}
 	}
 	{	int l_in;
-		for (l_in = 0; l_in < 4; l_in++)
+		for (l_in = 0; l_in < 3; l_in++)
 		{
 			printf("	bit    ok[%d]:	%d\n", l_in, now.ok[l_in]);
 		}
@@ -12404,7 +12416,14 @@ c_locals(int pid, int tp)
 		break;
 	case 1:
 		printf("local vars proc %d (Coordinator):\n", pid);
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			printf("	int    age[%d]:	%d\n", l_in, ((P1 *)pptr(pid))->_2_age[l_in]);
+		}
+	}
 	printf("	int    i:	%d\n", ((P1 *)pptr(pid))->_2_i);
+	printf("	int    maxIndex:	%d\n", ((P1 *)pptr(pid))->_2_maxIndex);
 		break;
 	case 0:
 		printf("local vars proc %d (P):\n", pid);
