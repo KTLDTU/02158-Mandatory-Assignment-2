@@ -24,7 +24,6 @@ public class SafeAlley extends Alley {
 
                 if (turn == -1) {
                     turnSem.P();
-                    Thread.sleep(1000);
 
                     if (turn == -1) {
                         turn = 0;
