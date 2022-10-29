@@ -15,50 +15,31 @@
 		_m = 3; goto P999;
 
 		 /* PROC Car */
-	case 3: /* STATE 1 - Man2Safe.pml:18 - [((_pid==0))] (0:0:0 - 1) */
+	case 3: /* STATE 1 - Man2Safe.pml:21 - [((_pid==0))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][1] = 1;
 		if (!((((int)((P0 *)this)->_pid)==0)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 4: /* STATE 2 - Man2Safe.pml:18 - [assert(!(((up>0)&&(down>0))))] (0:0:0 - 1) */
-		IfNotBlocked
-		reached[0][2] = 1;
-		spin_assert( !(((now.up>0)&&(now.down>0))), " !(((up>0)&&(down>0)))", II, tt, t);
-		_m = 3; goto P999; /* 0 */
-	case 5: /* STATE 3 - Man2Safe.pml:19 - [((_pid>0))] (0:0:0 - 1) */
+	case 4: /* STATE 3 - Man2Safe.pml:22 - [((_pid>0))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][3] = 1;
 		if (!((((int)((P0 *)this)->_pid)>0)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 6: /* STATE 5 - Man2Safe.pml:23 - [((_pid<5))] (0:0:0 - 1) */
+	case 5: /* STATE 5 - Man2Safe.pml:27 - [((_pid<5))] (0:0:0 - 1) */
 		IfNotBlocked
 		reached[0][5] = 1;
 		if (!((((int)((P0 *)this)->_pid)<5)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 7: /* STATE 6 - Man2Safe.pml:24 - [((downSem>0))] (11:0:1 - 1) */
+	case 6: /* STATE 7 - Man2Safe.pml:30 - [((inDownSem>0))] (28:0:1 - 1) */
 		IfNotBlocked
-		reached[0][6] = 1;
-		if (!((now.downSem>0)))
-			continue;
-		/* merge: downSem = (downSem-1)(0, 7, 11) */
 		reached[0][7] = 1;
-		(trpt+1)->bup.oval = now.downSem;
-		now.downSem = (now.downSem-1);
-#ifdef VAR_RANGES
-		logval("downSem", now.downSem);
-#endif
-		;
-		_m = 3; goto P999; /* 1 */
-	case 8: /* STATE 9 - Man2Safe.pml:25 - [((inDownSem>0))] (18:0:1 - 1) */
-		IfNotBlocked
-		reached[0][9] = 1;
 		if (!((now.inDownSem>0)))
 			continue;
-		/* merge: inDownSem = (inDownSem-1)(0, 10, 18) */
-		reached[0][10] = 1;
+		/* merge: inDownSem = (inDownSem-1)(0, 8, 28) */
+		reached[0][8] = 1;
 		(trpt+1)->bup.oval = now.inDownSem;
 		now.inDownSem = (now.inDownSem-1);
 #ifdef VAR_RANGES
@@ -66,32 +47,87 @@
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 9: /* STATE 12 - Man2Safe.pml:28 - [((down==0))] (0:0:0 - 1) */
+	case 7: /* STATE 10 - Man2Safe.pml:32 - [((turn==-(1)))] (0:0:0 - 1) */
 		IfNotBlocked
-		reached[0][12] = 1;
-		if (!((now.down==0)))
+		reached[0][10] = 1;
+		if (!((now.turn== -(1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 10: /* STATE 13 - Man2Safe.pml:28 - [((upSem>0))] (20:0:1 - 1) */
+	case 8: /* STATE 11 - Man2Safe.pml:32 - [((turnSem>0))] (22:0:1 - 1) */
 		IfNotBlocked
-		reached[0][13] = 1;
-		if (!((now.upSem>0)))
+		reached[0][11] = 1;
+		if (!((now.turnSem>0)))
 			continue;
-		/* merge: upSem = (upSem-1)(0, 14, 20) */
-		reached[0][14] = 1;
-		(trpt+1)->bup.oval = now.upSem;
-		now.upSem = (now.upSem-1);
+		/* merge: turnSem = (turnSem-1)(0, 12, 22) */
+		reached[0][12] = 1;
+		(trpt+1)->bup.oval = now.turnSem;
+		now.turnSem = (now.turnSem-1);
 #ifdef VAR_RANGES
-		logval("upSem", now.upSem);
+		logval("turnSem", now.turnSem);
 #endif
 		;
-		/* merge: .(goto)(0, 19, 20) */
-		reached[0][19] = 1;
+		_m = 3; goto P999; /* 1 */
+	case 9: /* STATE 14 - Man2Safe.pml:34 - [((turn==-(1)))] (0:0:0 - 1) */
+		IfNotBlocked
+		reached[0][14] = 1;
+		if (!((now.turn== -(1))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 10: /* STATE 15 - Man2Safe.pml:34 - [turn = 0] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[0][15] = 1;
+		(trpt+1)->bup.oval = now.turn;
+		now.turn = 0;
+#ifdef VAR_RANGES
+		logval("turn", now.turn);
+#endif
 		;
-		_m = 3; goto P999; /* 2 */
-	case 11: /* STATE 20 - Man2Safe.pml:31 - [down = (down+1)] (0:0:1 - 3) */
+		_m = 3; goto P999; /* 0 */
+	case 11: /* STATE 16 - Man2Safe.pml:34 - [turnSem = (turnSem+1)] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[0][16] = 1;
+		(trpt+1)->bup.oval = now.turnSem;
+		now.turnSem = (now.turnSem+1);
+#ifdef VAR_RANGES
+		logval("turnSem", now.turnSem);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 12: /* STATE 20 - Man2Safe.pml:35 - [turnSem = (turnSem+1)] (0:0:1 - 1) */
 		IfNotBlocked
 		reached[0][20] = 1;
+		(trpt+1)->bup.oval = now.turnSem;
+		now.turnSem = (now.turnSem+1);
+#ifdef VAR_RANGES
+		logval("turnSem", now.turnSem);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 13: /* STATE 24 - Man2Safe.pml:37 - [((turn==0))] (0:0:0 - 1) */
+		IfNotBlocked
+		reached[0][24] = 1;
+		if (!((now.turn==0)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 14: /* STATE 26 - Man2Safe.pml:38 - [((turn==1))] (0:0:0 - 1) */
+		IfNotBlocked
+		reached[0][26] = 1;
+		if (!((now.turn==1)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 15: /* STATE 30 - Man2Safe.pml:40 - [inDownSem = (inDownSem+1)] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[0][30] = 1;
+		(trpt+1)->bup.oval = now.inDownSem;
+		now.inDownSem = (now.inDownSem+1);
+#ifdef VAR_RANGES
+		logval("inDownSem", now.inDownSem);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 16: /* STATE 35 - Man2Safe.pml:43 - [down = (down+1)] (0:0:1 - 5) */
+		IfNotBlocked
+		reached[0][35] = 1;
 		(trpt+1)->bup.oval = now.down;
 		now.down = (now.down+1);
 #ifdef VAR_RANGES
@@ -99,9 +135,9 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 12: /* STATE 21 - Man2Safe.pml:32 - [inDownSem = (inDownSem+1)] (0:0:1 - 1) */
+	case 17: /* STATE 36 - Man2Safe.pml:44 - [inDownSem = (inDownSem+1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][21] = 1;
+		reached[0][36] = 1;
 		(trpt+1)->bup.oval = now.inDownSem;
 		now.inDownSem = (now.inDownSem+1);
 #ifdef VAR_RANGES
@@ -109,37 +145,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 13: /* STATE 23 - Man2Safe.pml:33 - [downSem = (downSem+1)] (0:0:1 - 1) */
+	case 18: /* STATE 40 - Man2Safe.pml:49 - [((inUpSem>0))] (61:0:1 - 1) */
 		IfNotBlocked
-		reached[0][23] = 1;
-		(trpt+1)->bup.oval = now.downSem;
-		now.downSem = (now.downSem+1);
-#ifdef VAR_RANGES
-		logval("downSem", now.downSem);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 14: /* STATE 26 - Man2Safe.pml:37 - [((upSem>0))] (31:0:1 - 1) */
-		IfNotBlocked
-		reached[0][26] = 1;
-		if (!((now.upSem>0)))
-			continue;
-		/* merge: upSem = (upSem-1)(0, 27, 31) */
-		reached[0][27] = 1;
-		(trpt+1)->bup.oval = now.upSem;
-		now.upSem = (now.upSem-1);
-#ifdef VAR_RANGES
-		logval("upSem", now.upSem);
-#endif
-		;
-		_m = 3; goto P999; /* 1 */
-	case 15: /* STATE 29 - Man2Safe.pml:38 - [((inUpSem>0))] (38:0:1 - 1) */
-		IfNotBlocked
-		reached[0][29] = 1;
+		reached[0][40] = 1;
 		if (!((now.inUpSem>0)))
 			continue;
-		/* merge: inUpSem = (inUpSem-1)(0, 30, 38) */
-		reached[0][30] = 1;
+		/* merge: inUpSem = (inUpSem-1)(0, 41, 61) */
+		reached[0][41] = 1;
 		(trpt+1)->bup.oval = now.inUpSem;
 		now.inUpSem = (now.inUpSem-1);
 #ifdef VAR_RANGES
@@ -147,32 +159,87 @@
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 16: /* STATE 32 - Man2Safe.pml:41 - [((up==0))] (0:0:0 - 1) */
+	case 19: /* STATE 43 - Man2Safe.pml:51 - [((turn==-(1)))] (0:0:0 - 1) */
 		IfNotBlocked
-		reached[0][32] = 1;
-		if (!((now.up==0)))
+		reached[0][43] = 1;
+		if (!((now.turn== -(1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 17: /* STATE 33 - Man2Safe.pml:41 - [((downSem>0))] (40:0:1 - 1) */
+	case 20: /* STATE 44 - Man2Safe.pml:51 - [((turnSem>0))] (55:0:1 - 1) */
 		IfNotBlocked
-		reached[0][33] = 1;
-		if (!((now.downSem>0)))
+		reached[0][44] = 1;
+		if (!((now.turnSem>0)))
 			continue;
-		/* merge: downSem = (downSem-1)(0, 34, 40) */
-		reached[0][34] = 1;
-		(trpt+1)->bup.oval = now.downSem;
-		now.downSem = (now.downSem-1);
+		/* merge: turnSem = (turnSem-1)(0, 45, 55) */
+		reached[0][45] = 1;
+		(trpt+1)->bup.oval = now.turnSem;
+		now.turnSem = (now.turnSem-1);
 #ifdef VAR_RANGES
-		logval("downSem", now.downSem);
+		logval("turnSem", now.turnSem);
 #endif
 		;
-		/* merge: .(goto)(0, 39, 40) */
-		reached[0][39] = 1;
-		;
-		_m = 3; goto P999; /* 2 */
-	case 18: /* STATE 40 - Man2Safe.pml:44 - [up = (up+1)] (0:0:1 - 3) */
+		_m = 3; goto P999; /* 1 */
+	case 21: /* STATE 47 - Man2Safe.pml:53 - [((turn==-(1)))] (0:0:0 - 1) */
 		IfNotBlocked
-		reached[0][40] = 1;
+		reached[0][47] = 1;
+		if (!((now.turn== -(1))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 22: /* STATE 48 - Man2Safe.pml:53 - [turn = 1] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[0][48] = 1;
+		(trpt+1)->bup.oval = now.turn;
+		now.turn = 1;
+#ifdef VAR_RANGES
+		logval("turn", now.turn);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 23: /* STATE 49 - Man2Safe.pml:53 - [turnSem = (turnSem+1)] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[0][49] = 1;
+		(trpt+1)->bup.oval = now.turnSem;
+		now.turnSem = (now.turnSem+1);
+#ifdef VAR_RANGES
+		logval("turnSem", now.turnSem);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 24: /* STATE 53 - Man2Safe.pml:54 - [turnSem = (turnSem+1)] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[0][53] = 1;
+		(trpt+1)->bup.oval = now.turnSem;
+		now.turnSem = (now.turnSem+1);
+#ifdef VAR_RANGES
+		logval("turnSem", now.turnSem);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 25: /* STATE 57 - Man2Safe.pml:56 - [((turn==0))] (0:0:0 - 1) */
+		IfNotBlocked
+		reached[0][57] = 1;
+		if (!((now.turn==0)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 26: /* STATE 59 - Man2Safe.pml:57 - [((turn==1))] (0:0:0 - 1) */
+		IfNotBlocked
+		reached[0][59] = 1;
+		if (!((now.turn==1)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 27: /* STATE 63 - Man2Safe.pml:59 - [inUpSem = (inUpSem+1)] (0:0:1 - 1) */
+		IfNotBlocked
+		reached[0][63] = 1;
+		(trpt+1)->bup.oval = now.inUpSem;
+		now.inUpSem = (now.inUpSem+1);
+#ifdef VAR_RANGES
+		logval("inUpSem", now.inUpSem);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 28: /* STATE 68 - Man2Safe.pml:62 - [up = (up+1)] (0:0:1 - 5) */
+		IfNotBlocked
+		reached[0][68] = 1;
 		(trpt+1)->bup.oval = now.up;
 		now.up = (now.up+1);
 #ifdef VAR_RANGES
@@ -180,9 +247,9 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 19: /* STATE 41 - Man2Safe.pml:45 - [inUpSem = (inUpSem+1)] (0:0:1 - 1) */
+	case 29: /* STATE 69 - Man2Safe.pml:63 - [inUpSem = (inUpSem+1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][41] = 1;
+		reached[0][69] = 1;
 		(trpt+1)->bup.oval = now.inUpSem;
 		now.inUpSem = (now.inUpSem+1);
 #ifdef VAR_RANGES
@@ -190,29 +257,19 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 20: /* STATE 43 - Man2Safe.pml:46 - [upSem = (upSem+1)] (0:0:1 - 1) */
+	case 30: /* STATE 73 - Man2Safe.pml:68 - [((_pid<5))] (0:0:0 - 1) */
 		IfNotBlocked
-		reached[0][43] = 1;
-		(trpt+1)->bup.oval = now.upSem;
-		now.upSem = (now.upSem+1);
-#ifdef VAR_RANGES
-		logval("upSem", now.upSem);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 21: /* STATE 47 - Man2Safe.pml:51 - [((_pid<5))] (0:0:0 - 1) */
-		IfNotBlocked
-		reached[0][47] = 1;
+		reached[0][73] = 1;
 		if (!((((int)((P0 *)this)->_pid)<5)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 22: /* STATE 48 - Man2Safe.pml:51 - [((inDownSem>0))] (51:0:1 - 1) */
+	case 31: /* STATE 74 - Man2Safe.pml:68 - [((inDownSem>0))] (77:0:1 - 1) */
 		IfNotBlocked
-		reached[0][48] = 1;
+		reached[0][74] = 1;
 		if (!((now.inDownSem>0)))
 			continue;
-		/* merge: inDownSem = (inDownSem-1)(0, 49, 51) */
-		reached[0][49] = 1;
+		/* merge: inDownSem = (inDownSem-1)(0, 75, 77) */
+		reached[0][75] = 1;
 		(trpt+1)->bup.oval = now.inDownSem;
 		now.inDownSem = (now.inDownSem-1);
 #ifdef VAR_RANGES
@@ -220,9 +277,9 @@
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 23: /* STATE 51 - Man2Safe.pml:52 - [down = (down-1)] (0:0:1 - 1) */
+	case 32: /* STATE 77 - Man2Safe.pml:69 - [down = (down-1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][51] = 1;
+		reached[0][77] = 1;
 		(trpt+1)->bup.oval = now.down;
 		now.down = (now.down-1);
 #ifdef VAR_RANGES
@@ -230,25 +287,25 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 24: /* STATE 52 - Man2Safe.pml:54 - [((down==0))] (0:0:0 - 1) */
+	case 33: /* STATE 78 - Man2Safe.pml:71 - [((down==0))] (0:0:0 - 1) */
 		IfNotBlocked
-		reached[0][52] = 1;
+		reached[0][78] = 1;
 		if (!((now.down==0)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 25: /* STATE 53 - Man2Safe.pml:54 - [upSem = (upSem+1)] (0:0:1 - 1) */
+	case 34: /* STATE 79 - Man2Safe.pml:71 - [turn = -(1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][53] = 1;
-		(trpt+1)->bup.oval = now.upSem;
-		now.upSem = (now.upSem+1);
+		reached[0][79] = 1;
+		(trpt+1)->bup.oval = now.turn;
+		now.turn =  -(1);
 #ifdef VAR_RANGES
-		logval("upSem", now.upSem);
+		logval("turn", now.turn);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 26: /* STATE 59 - Man2Safe.pml:57 - [inDownSem = (inDownSem+1)] (0:0:1 - 1) */
+	case 35: /* STATE 84 - Man2Safe.pml:74 - [inDownSem = (inDownSem+1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][59] = 1;
+		reached[0][84] = 1;
 		(trpt+1)->bup.oval = now.inDownSem;
 		now.inDownSem = (now.inDownSem+1);
 #ifdef VAR_RANGES
@@ -256,13 +313,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 27: /* STATE 62 - Man2Safe.pml:58 - [((inUpSem>0))] (65:0:1 - 1) */
+	case 36: /* STATE 87 - Man2Safe.pml:75 - [((inUpSem>0))] (90:0:1 - 1) */
 		IfNotBlocked
-		reached[0][62] = 1;
+		reached[0][87] = 1;
 		if (!((now.inUpSem>0)))
 			continue;
-		/* merge: inUpSem = (inUpSem-1)(0, 63, 65) */
-		reached[0][63] = 1;
+		/* merge: inUpSem = (inUpSem-1)(0, 88, 90) */
+		reached[0][88] = 1;
 		(trpt+1)->bup.oval = now.inUpSem;
 		now.inUpSem = (now.inUpSem-1);
 #ifdef VAR_RANGES
@@ -270,9 +327,9 @@
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 28: /* STATE 65 - Man2Safe.pml:59 - [up = (up-1)] (0:0:1 - 1) */
+	case 37: /* STATE 90 - Man2Safe.pml:76 - [up = (up-1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][65] = 1;
+		reached[0][90] = 1;
 		(trpt+1)->bup.oval = now.up;
 		now.up = (now.up-1);
 #ifdef VAR_RANGES
@@ -280,25 +337,25 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 29: /* STATE 66 - Man2Safe.pml:61 - [((up==0))] (0:0:0 - 1) */
+	case 38: /* STATE 91 - Man2Safe.pml:78 - [((up==0))] (0:0:0 - 1) */
 		IfNotBlocked
-		reached[0][66] = 1;
+		reached[0][91] = 1;
 		if (!((now.up==0)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 30: /* STATE 67 - Man2Safe.pml:61 - [downSem = (downSem+1)] (0:0:1 - 1) */
+	case 39: /* STATE 92 - Man2Safe.pml:78 - [turn = -(1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][67] = 1;
-		(trpt+1)->bup.oval = now.downSem;
-		now.downSem = (now.downSem+1);
+		reached[0][92] = 1;
+		(trpt+1)->bup.oval = now.turn;
+		now.turn =  -(1);
 #ifdef VAR_RANGES
-		logval("downSem", now.downSem);
+		logval("turn", now.turn);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 31: /* STATE 73 - Man2Safe.pml:64 - [inUpSem = (inUpSem+1)] (0:0:1 - 1) */
+	case 40: /* STATE 97 - Man2Safe.pml:81 - [inUpSem = (inUpSem+1)] (0:0:1 - 1) */
 		IfNotBlocked
-		reached[0][73] = 1;
+		reached[0][97] = 1;
 		(trpt+1)->bup.oval = now.inUpSem;
 		now.inUpSem = (now.inUpSem+1);
 #ifdef VAR_RANGES
@@ -306,9 +363,9 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 32: /* STATE 80 - Man2Safe.pml:67 - [-end-] (0:0:0 - 1) */
+	case 41: /* STATE 104 - Man2Safe.pml:84 - [-end-] (0:0:0 - 3) */
 		IfNotBlocked
-		reached[0][80] = 1;
+		reached[0][104] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 	case  _T5:	/* np_ */

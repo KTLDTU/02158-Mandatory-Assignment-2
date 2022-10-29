@@ -1,9 +1,11 @@
-never noDeadlock {    /* !([] (! (((up>0)) && ((down>0))))) */
+never test {    /* !([] ((! ((Car[2]@enter))) || (<> ((Car[2]@leave))))) */
 T0_init:
 	if
-	:: (! ((! (((up>0)) && ((down>0)))))) -> goto accept_all
+	:: (! ((! ((Car[2]@enter)))) && ! (((Car[2]@leave)))) -> goto accept_S4
 	:: (1) -> goto T0_init
 	fi;
-accept_all:
-	skip
+accept_S4:
+	if
+	:: (! (((Car[2]@leave)))) -> goto accept_S4
+	fi;
 }

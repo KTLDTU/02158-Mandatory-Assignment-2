@@ -71,35 +71,41 @@ typedef struct S_F_MAP {
 	char *fnm; int from; int upto;
 } S_F_MAP;
 
-#define nstates0	81	/* Car */
-#define endstate0	80
+#define nstates0	105	/* Car */
+#define endstate0	104
 short src_ln0 [] = {
-	  0,  18,  18,  19,  19,  23,  24,  24, 
-	 24,  25,  25,  25,  28,  28,  28,  28, 
-	 29,  29,  27,  31,  31,  32,  32,  33, 
-	 33,  35,  37,  37,  37,  38,  38,  38, 
-	 41,  41,  41,  41,  42,  42,  40,  44, 
-	 44,  45,  45,  46,  46,  22,  49,  51, 
-	 51,  51,  51,  52,  54,  54,  54,  55, 
-	 55,  53,  57,  57,  57,  58,  58,  58, 
-	 58,  59,  61,  61,  61,  62,  62,  60, 
-	 64,  64,  64,  50,  66,  17,  67,  17, 
-	 67,   0, };
+	  0,  21,  21,  22,  22,  27,  30,  30, 
+	 30,  30,  32,  32,  32,  32,  34,  34, 
+	 34,  34,  34,  35,  35,  35,  33,  37, 
+	 37,  37,  38,  38,  31,  40,  40,  40, 
+	 29,  43,  29,  43,  44,  44,  46,  49, 
+	 49,  49,  49,  51,  51,  51,  51,  53, 
+	 53,  53,  53,  53,  54,  54,  54,  52, 
+	 56,  56,  56,  57,  57,  50,  59,  59, 
+	 59,  48,  62,  48,  62,  63,  63,  26, 
+	 66,  68,  68,  68,  68,  69,  71,  71, 
+	 72,  72,  70,  74,  74,  74,  75,  75, 
+	 75,  75,  76,  78,  78,  79,  79,  77, 
+	 81,  81,  81,  67,  83,  20,  84,  20, 
+	 84,   0, };
 S_F_MAP src_file0 [] = {
 	{ "-", 0, 0 },
-	{ "Man2Safe.pml", 1, 80 },
-	{ "-", 81, 82 }
+	{ "Man2Safe.pml", 1, 104 },
+	{ "-", 105, 106 }
 };
 uchar reached0 [] = {
-	  0,   1,   0,   1,   1,   1,   1,   0, 
-	  0,   1,   0,   0,   1,   1,   0,   0, 
-	  1,   1,   0,   1,   0,   1,   0,   1, 
-	  0,   1,   1,   0,   0,   1,   0,   0, 
-	  1,   1,   0,   0,   1,   1,   0,   1, 
-	  0,   1,   0,   1,   0,   0,   1,   1, 
-	  1,   0,   0,   0,   1,   1,   0,   1, 
-	  1,   0,   1,   1,   0,   1,   1,   0, 
-	  0,   0,   1,   1,   0,   1,   1,   0, 
+	  0,   1,   1,   1,   1,   1,   1,   1, 
+	  0,   0,   1,   1,   0,   0,   1,   0, 
+	  1,   0,   1,   1,   1,   0,   0,   1, 
+	  1,   1,   1,   1,   0,   1,   1,   0, 
+	  0,   1,   1,   0,   1,   0,   1,   1, 
+	  1,   0,   0,   1,   1,   0,   0,   1, 
+	  0,   1,   0,   1,   1,   1,   0,   0, 
+	  1,   1,   1,   1,   1,   0,   1,   1, 
+	  0,   0,   1,   1,   0,   1,   0,   0, 
+	  1,   1,   1,   0,   0,   0,   1,   0, 
+	  1,   1,   0,   1,   1,   0,   1,   1, 
+	  0,   0,   0,   1,   0,   1,   1,   0, 
 	  1,   1,   0,   0,   1,   0,   1,   1, 
 	  0,   0, };
 uchar *loopstate0;
@@ -117,8 +123,8 @@ struct {
 } code_lookup[] = {
 	{ (char *) 0, "" }
 };
-#define _T5	33
-#define _T2	34
+#define _T5	42
+#define _T2	43
 #define T_ID	unsigned char
 #define WS		8 /* word size in bytes */
 #define SYNC	0
@@ -385,12 +391,12 @@ typedef struct State {
 		unsigned short _event;
 	#endif
 #endif
-	int upSem;
-	int downSem;
 	int up;
 	int down;
 	int inDownSem;
 	int inUpSem;
+	int turnSem;
+	int turn;
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
 	char *_ids_[MAXPROC+MAXQ+4];
@@ -417,6 +423,8 @@ long _c_count[MAXPROC];
 #endif
 
 #define HAS_TRACK	0
+/* hidden variable: */	int upSem;
+/* hidden variable: */	int downSem;
 int _; /* a predefined write-only variable */
 
 #define FORWARD_MOVES	"pan.m"
@@ -429,7 +437,7 @@ uchar *loopstate1;  /* np_ */
 #define endstate1	2 /* np_ */
 
 #define start1	0 /* np_ */
-#define start0	77
+#define start0	101
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
@@ -560,7 +568,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	35
+#define NTRANS	44
 #ifdef PEG
 	long peg[NTRANS];
 #endif

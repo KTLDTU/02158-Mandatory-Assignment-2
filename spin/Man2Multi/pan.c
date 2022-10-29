@@ -581,8 +581,8 @@ addproc(int calling_pid, int n)
 		break;
 	case 0:	/* Car */
 		((P0 *)pptr(h))->_t = 0;
-		((P0 *)pptr(h))->_p = 77;
-		reached0[77]=1;
+		((P0 *)pptr(h))->_p = 101;
+		reached0[101]=1;
 		/* params: */
 		/* locals: */
 		((P0 *)pptr(h))->_1_temp = 0;
@@ -10584,19 +10584,21 @@ iniglobals(int calling_pid)
 	if ((Maxbody % WS) != 0)
 		Maxbody += WS - (Maxbody % WS);
 
-		now.upSem = 1;
-		now.downSem = 1;
+		upSem = 1;
+		downSem = 1;
 		now.up = 0;
 		now.down = 0;
 		now.inDownSem = 1;
 		now.inUpSem = 1;
+		now.turnSem = 1;
+		now.turn =  -(1);
 #ifdef VAR_RANGES
-		logval("upSem", now.upSem);
-		logval("downSem", now.downSem);
 		logval("up", now.up);
 		logval("down", now.down);
 		logval("inDownSem", now.inDownSem);
 		logval("inUpSem", now.inUpSem);
+		logval("turnSem", now.turnSem);
+		logval("turn", now.turn);
 #endif
 }
 
@@ -12305,12 +12307,12 @@ void
 c_globals(void)
 {	/* int i; */
 	printf("global vars:\n");
-	printf("	int    upSem:	%d\n", now.upSem);
-	printf("	int    downSem:	%d\n", now.downSem);
 	printf("	int    up:	%d\n", now.up);
 	printf("	int    down:	%d\n", now.down);
 	printf("	int    inDownSem:	%d\n", now.inDownSem);
 	printf("	int    inUpSem:	%d\n", now.inUpSem);
+	printf("	int    turnSem:	%d\n", now.turnSem);
+	printf("	int    turn:	%d\n", now.turn);
 }
 void
 c_locals(int pid, int tp)
