@@ -16,6 +16,10 @@ int turn = -1;
 int cur_up = 0;
 int cur_down = 0;
 
+// temp variables for increment and decrement
+int temp_down;
+int temp_up;
+
 active [N] proctype Car() {
 	int temp;
 do
@@ -29,19 +33,16 @@ enter:
 
 		do
 			:: true -> P(inDownSem);
+			P(turnSem);
 			if
-				:: turn == -1 -> P(turnSem);
-				if
-					:: turn == -1 -> turn = 0; V(turnSem); break
-					:: else -> V(turnSem);
-				fi
-				:: turn == 0 -> break
-				:: turn == 1 -> skip
+				:: turn == -1 -> turn = 0; V(turnSem); break
+				:: turn == 0 -> V(turnSem); break
+				:: turn == 1 -> V(turnSem)
 			fi;
-			V(inDownSem);
+			V(inDownSem)
 		od;
 
-		int temp_down = down;
+		temp_down = down;
 		down = temp_down + 1;
 		V(inDownSem);
 		cur_down++;
@@ -50,19 +51,16 @@ enter:
 
 		do
 			:: true -> P(inUpSem);
+			P(turnSem);
 			if
-				:: turn == -1 -> P(turnSem);
-				if
-					:: turn == -1 -> turn = 1; V(turnSem); break
-					:: else -> V(turnSem)
-				fi
-				:: turn == 0 -> skip
-				:: turn == 1 -> break
+				:: turn == -1 -> turn = 1; V(turnSem); break
+				:: turn == 0 -> V(turnSem)
+				:: turn == 1 -> V(turnSem); break
 			fi;
 			V(inUpSem);
 		od;
 
-		int temp_up = up;
+		temp_up = up;
 		up = temp_up + 1;
 		V(inUpSem);
 		cur_up++;
@@ -72,7 +70,7 @@ leave:
 	if
 		:: _pid < 5 -> cur_down--;
 		P(inDownSem);
-		int temp_down = down;
+		temp_down = down;
 		down = temp_down - 1;
 		
 		if 
@@ -84,7 +82,7 @@ leave:
 		
 		:: else -> cur_up--;
 		P(inUpSem);
-		int temp_up = up;
+		temp_up = up;
 		up = temp_up - 1;
 		
 		if
