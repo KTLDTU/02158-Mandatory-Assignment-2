@@ -21,20 +21,19 @@ public class SafeAlley extends Alley {
         if (no < 5) {
             while (true) {
                 inDownSem.P();
+                turnSem.P();
 
                 if (turn == -1) {
-                    turnSem.P();
-
-                    if (turn == -1) {
-                        turn = 0;
-                        turnSem.V();
-                        break;
-                    }
-                    else
-                        turnSem.V();
-                }
-                else if (turn == 0)
+                    turn = 0;
+                    turnSem.V();
                     break;
+                }
+                else if (turn == 0) {
+                    turnSem.V();
+                    break;
+                }
+                else
+                    turnSem.V();
 
                 inDownSem.V();
             }
@@ -44,20 +43,19 @@ public class SafeAlley extends Alley {
         } else {
             while (true) {
                 inUpSem.P();
+                turnSem.P();
 
                 if (turn == -1) {
-                    turnSem.P();
-
-                    if (turn == -1) {
-                        turn = 1;
-                        turnSem.V();
-                        break;
-                    }
-                    else
-                        turnSem.V();
-                }
-                else if (turn == 1)
+                    turn = 1;
+                    turnSem.V();
                     break;
+                }
+                else if (turn == 0)
+                    turnSem.V();
+                else if (turn == 1) {
+                    turnSem.V();
+                    break;
+                }
 
                 inUpSem.V();
             }
