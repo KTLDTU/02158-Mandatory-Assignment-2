@@ -596,8 +596,8 @@ addproc(int calling_pid, int n)
 		break;
 	case 0:	/* Car */
 		((P0 *)pptr(h))->_t = 0;
-		((P0 *)pptr(h))->_p = 101;
-		reached0[101]=1;
+		((P0 *)pptr(h))->_p = 105;
+		reached0[105]=1;
 		/* params: */
 		/* locals: */
 		((P0 *)pptr(h))->_1_temp = 0;
@@ -10620,6 +10620,8 @@ iniglobals(int calling_pid)
 		now.inUpSem = 1;
 		now.turnSem = 1;
 		now.turn =  -(1);
+		now.cur_up = 0;
+		now.cur_down = 0;
 #ifdef VAR_RANGES
 		logval("up", now.up);
 		logval("down", now.down);
@@ -10627,6 +10629,8 @@ iniglobals(int calling_pid)
 		logval("inUpSem", now.inUpSem);
 		logval("turnSem", now.turnSem);
 		logval("turn", now.turn);
+		logval("cur_up", now.cur_up);
+		logval("cur_down", now.cur_down);
 #endif
 }
 
@@ -12344,6 +12348,8 @@ c_globals(void)
 	printf("	int    inUpSem:	%d\n", now.inUpSem);
 	printf("	int    turnSem:	%d\n", now.turnSem);
 	printf("	int    turn:	%d\n", now.turn);
+	printf("	int    cur_up:	%d\n", now.cur_up);
+	printf("	int    cur_down:	%d\n", now.cur_down);
 }
 void
 c_locals(int pid, int tp)

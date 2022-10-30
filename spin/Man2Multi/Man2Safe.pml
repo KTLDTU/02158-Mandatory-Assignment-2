@@ -1,7 +1,7 @@
 #define N 9
 #define P(s) atomic{s > 0 -> s--}
 #define V(s) atomic{s++}
-#define INV (!(up > 0 && down > 0))
+#define INV (!(cur_up > 0 && cur_down > 0))
 
 int up = 0;
 int down = 0;
@@ -11,6 +11,10 @@ int inUpSem = 1;
 
 int turnSem = 1;
 int turn = -1;
+
+// history variables
+int cur_up = 0;
+int cur_down = 0;
 
 active [N] proctype Car() {
 	int temp;
@@ -39,6 +43,7 @@ enter:
 
 		down++;
 		V(inDownSem);
+		cur_down++;
 
 		:: else ->
 
@@ -58,24 +63,27 @@ enter:
 
 		up++;
 		V(inUpSem);
+		cur_up++;
 	fi;
 
 leave:
 	if
-		:: _pid < 5 -> P(inDownSem);
+		:: _pid < 5 -> cur_down--;
+		P(inDownSem);
 		down--;
 		if 
 			:: down == 0 -> turn = -1
 			:: else -> skip;
-		fi; 
-		V(inDownSem);
-		:: else ->  P(inUpSem);
+		fi;
+		V(inDownSem)
+		:: else -> cur_up--;
+		P(inUpSem);
 		up--;
 		if
 			:: up == 0 -> turn = -1
 			:: else -> skip
 		fi;
-		V(inUpSem);
+		V(inUpSem)
 	fi;
 od;
 }
