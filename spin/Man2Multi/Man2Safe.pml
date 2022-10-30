@@ -41,7 +41,8 @@ enter:
 			V(inDownSem);
 		od;
 
-		down++;
+		int temp_down = down;
+		down = temp_down + 1;
 		V(inDownSem);
 		cur_down++;
 
@@ -61,7 +62,8 @@ enter:
 			V(inUpSem);
 		od;
 
-		up++;
+		int temp_up = up;
+		up = temp_up + 1;
 		V(inUpSem);
 		cur_up++;
 	fi;
@@ -70,19 +72,26 @@ leave:
 	if
 		:: _pid < 5 -> cur_down--;
 		P(inDownSem);
-		down--;
+		int temp_down = down;
+		down = temp_down - 1;
+		
 		if 
 			:: down == 0 -> turn = -1
 			:: else -> skip;
 		fi;
+		
 		V(inDownSem)
+		
 		:: else -> cur_up--;
 		P(inUpSem);
-		up--;
+		int temp_up = up;
+		up = temp_up - 1;
+		
 		if
 			:: up == 0 -> turn = -1
 			:: else -> skip
 		fi;
+		
 		V(inUpSem)
 	fi;
 od;
