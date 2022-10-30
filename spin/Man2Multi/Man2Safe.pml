@@ -1,8 +1,7 @@
 #define N 9
 #define P(s) atomic{s > 0 -> s--}
 #define V(s) atomic{s++}
-int upSem = 1;
-int downSem = 1;
+#define INV (!(up > 0 && down > 0))
 
 int up = 0;
 int down = 0;
@@ -12,8 +11,6 @@ int inUpSem = 1;
 
 int turnSem = 1;
 int turn = -1;
-
-/* Alley safety property: !(up > 0 && down > 0) */
 
 active [N] proctype Car() {
 	int temp;
@@ -83,5 +80,6 @@ leave:
 od;
 }
 
-// TODO: make dis ltl formula
-// ltl alleyStafety { [] (!(up > 0 && down > 0)) }
+active proctype Check() {
+	!INV -> assert(INV)
+}

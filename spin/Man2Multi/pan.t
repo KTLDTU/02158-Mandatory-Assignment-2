@@ -22,7 +22,15 @@ settable(void)
 {	Trans *T;
 	Trans *settr(int, int, int, int, int, char *, int, int, int);
 
-	trans = (Trans ***) emalloc(2*sizeof(Trans **));
+	trans = (Trans ***) emalloc(3*sizeof(Trans **));
+
+	/* proctype 1: Check */
+
+	trans[1] = (Trans **) emalloc(4*sizeof(Trans *));
+
+	trans[1][1]	= settr(104,0,2,3,0,"(!(!(((up>0)&&(down>0)))))", 1, 2, 0);
+	trans[1][2]	= settr(105,0,3,4,0,"assert(!(((up>0)&&(down>0))))", 1, 2, 0);
+	trans[1][3]	= settr(106,0,0,5,5,"-end-", 0, 3500, 0);
 
 	/* proctype 0: Car */
 
@@ -32,60 +40,60 @@ settable(void)
 	T = trans[0][101] = settr(100,0,0,0,0,"DO", 0, 2, 0);
 	T = T->nxt	= settr(100,0,1,0,0,"DO", 0, 2, 0);
 	    T->nxt	= settr(100,0,3,0,0,"DO", 0, 2, 0);
-	trans[0][1]	= settr(0,0,104,3,0,"((_pid==0))", 0, 2, 0);
+	trans[0][1]	= settr(0,0,104,6,0,"((_pid==0))", 0, 2, 0);
 	trans[0][2]	= settr(1,0,104,1,0,"goto :b0", 0, 2, 0);
-	trans[0][3]	= settr(2,0,4,4,0,"((_pid>0))", 0, 2, 0);
+	trans[0][3]	= settr(2,0,4,7,0,"((_pid>0))", 0, 2, 0);
 	trans[0][4]	= settr(3,0,71,1,0,"(1)", 0, 2, 0);
 	T = trans[0][71] = settr(70,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(70,0,5,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(70,0,38,0,0,"IF", 0, 2, 0);
-	trans[0][5]	= settr(4,0,32,5,0,"((_pid<5))", 0, 2, 0);
+	trans[0][5]	= settr(4,0,32,8,0,"((_pid<5))", 0, 2, 0);
 	trans[0][33]	= settr(32,0,32,1,0,".(goto)", 0, 2, 0);
 	T = trans[0][32] = settr(31,0,0,0,0,"DO", 0, 2, 0);
 	    T->nxt	= settr(31,0,6,0,0,"DO", 0, 2, 0);
 	trans[0][6]	= settr(5,0,9,1,0,"(1)", 0, 2, 0);
 	T = trans[ 0][9] = settr(8,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(8,2,7,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][7]	= settr(6,4,28,6,6,"((inDownSem>0))", 1, 2, 0); /* m: 8 -> 28,0 */
+	trans[0][7]	= settr(6,4,28,9,9,"((inDownSem>0))", 1, 2, 0); /* m: 8 -> 28,0 */
 	reached0[8] = 1;
 	trans[0][8]	= settr(0,0,0,0,0,"inDownSem = (inDownSem-1)",0,0,0);
 	T = trans[0][28] = settr(27,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(27,0,10,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(27,0,24,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(27,0,26,0,0,"IF", 0, 2, 0);
-	trans[0][10]	= settr(9,0,13,7,0,"((turn==-(1)))", 1, 2, 0);
+	trans[0][10]	= settr(9,0,13,10,0,"((turn==-(1)))", 1, 2, 0);
 	T = trans[ 0][13] = settr(12,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(12,2,11,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][11]	= settr(10,4,22,8,8,"((turnSem>0))", 1, 2, 0); /* m: 12 -> 22,0 */
+	trans[0][11]	= settr(10,4,22,11,11,"((turnSem>0))", 1, 2, 0); /* m: 12 -> 22,0 */
 	reached0[12] = 1;
 	trans[0][12]	= settr(0,0,0,0,0,"turnSem = (turnSem-1)",0,0,0);
 	T = trans[0][22] = settr(21,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(21,0,14,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(21,0,19,0,0,"IF", 0, 2, 0);
-	trans[0][14]	= settr(13,0,15,9,0,"((turn==-(1)))", 1, 2, 0);
-	trans[0][15]	= settr(14,0,17,10,10,"turn = 0", 1, 2, 0);
+	trans[0][14]	= settr(13,0,15,12,0,"((turn==-(1)))", 1, 2, 0);
+	trans[0][15]	= settr(14,0,17,13,13,"turn = 0", 1, 2, 0);
 	T = trans[ 0][17] = settr(16,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(16,2,16,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][16]	= settr(15,0,35,11,11,"turnSem = (turnSem+1)", 1, 2, 0);
+	trans[0][16]	= settr(15,0,35,14,14,"turnSem = (turnSem+1)", 1, 2, 0);
 	trans[0][18]	= settr(17,0,35,1,0,"goto :b1", 0, 2, 0);
 	trans[0][23]	= settr(22,0,31,1,0,".(goto)", 0, 2, 0);
 	trans[0][19]	= settr(18,0,21,2,0,"else", 0, 2, 0);
 	T = trans[ 0][21] = settr(20,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(20,2,20,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][20]	= settr(19,0,31,12,12,"turnSem = (turnSem+1)", 1, 2, 0);
+	trans[0][20]	= settr(19,0,31,15,15,"turnSem = (turnSem+1)", 1, 2, 0);
 	trans[0][29]	= settr(28,0,31,1,0,".(goto)", 0, 2, 0);
-	trans[0][24]	= settr(23,0,35,13,0,"((turn==0))", 1, 2, 0);
+	trans[0][24]	= settr(23,0,35,16,0,"((turn==0))", 1, 2, 0);
 	trans[0][25]	= settr(24,0,35,1,0,"goto :b1", 0, 2, 0);
-	trans[0][26]	= settr(25,0,27,14,0,"((turn==1))", 1, 2, 0);
+	trans[0][26]	= settr(25,0,27,17,0,"((turn==1))", 1, 2, 0);
 	trans[0][27]	= settr(26,0,31,1,0,"(1)", 0, 2, 0);
 	T = trans[ 0][31] = settr(30,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(30,2,30,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][30]	= settr(29,0,32,15,15,"inDownSem = (inDownSem+1)", 1, 2, 0);
+	trans[0][30]	= settr(29,0,32,18,18,"inDownSem = (inDownSem+1)", 1, 2, 0);
 	trans[0][34]	= settr(33,0,35,1,0,"break", 0, 2, 0);
-	trans[0][35]	= settr(34,0,37,16,16,"down = (down+1)", 1, 2, 0);
+	trans[0][35]	= settr(34,0,37,19,19,"down = (down+1)", 1, 2, 0);
 	T = trans[ 0][37] = settr(36,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(36,2,36,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][36]	= settr(35,0,99,17,17,"inDownSem = (inDownSem+1)", 1, 2, 0);
+	trans[0][36]	= settr(35,0,99,20,20,"inDownSem = (inDownSem+1)", 1, 2, 0);
 	trans[0][72]	= settr(71,0,99,1,0,".(goto)", 0, 2, 0);
 	trans[0][38]	= settr(37,0,65,2,0,"else", 0, 2, 0);
 	trans[0][66]	= settr(65,0,65,1,0,".(goto)", 0, 2, 0);
@@ -94,88 +102,88 @@ settable(void)
 	trans[0][39]	= settr(38,0,42,1,0,"(1)", 0, 2, 0);
 	T = trans[ 0][42] = settr(41,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(41,2,40,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][40]	= settr(39,4,61,18,18,"((inUpSem>0))", 1, 2, 0); /* m: 41 -> 61,0 */
+	trans[0][40]	= settr(39,4,61,21,21,"((inUpSem>0))", 1, 2, 0); /* m: 41 -> 61,0 */
 	reached0[41] = 1;
 	trans[0][41]	= settr(0,0,0,0,0,"inUpSem = (inUpSem-1)",0,0,0);
 	T = trans[0][61] = settr(60,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(60,0,43,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(60,0,57,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(60,0,59,0,0,"IF", 0, 2, 0);
-	trans[0][43]	= settr(42,0,46,19,0,"((turn==-(1)))", 1, 2, 0);
+	trans[0][43]	= settr(42,0,46,22,0,"((turn==-(1)))", 1, 2, 0);
 	T = trans[ 0][46] = settr(45,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(45,2,44,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][44]	= settr(43,4,55,20,20,"((turnSem>0))", 1, 2, 0); /* m: 45 -> 55,0 */
+	trans[0][44]	= settr(43,4,55,23,23,"((turnSem>0))", 1, 2, 0); /* m: 45 -> 55,0 */
 	reached0[45] = 1;
 	trans[0][45]	= settr(0,0,0,0,0,"turnSem = (turnSem-1)",0,0,0);
 	T = trans[0][55] = settr(54,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(54,0,47,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(54,0,52,0,0,"IF", 0, 2, 0);
-	trans[0][47]	= settr(46,0,48,21,0,"((turn==-(1)))", 1, 2, 0);
-	trans[0][48]	= settr(47,0,50,22,22,"turn = 1", 1, 2, 0);
+	trans[0][47]	= settr(46,0,48,24,0,"((turn==-(1)))", 1, 2, 0);
+	trans[0][48]	= settr(47,0,50,25,25,"turn = 1", 1, 2, 0);
 	T = trans[ 0][50] = settr(49,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(49,2,49,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][49]	= settr(48,0,68,23,23,"turnSem = (turnSem+1)", 1, 2, 0);
+	trans[0][49]	= settr(48,0,68,26,26,"turnSem = (turnSem+1)", 1, 2, 0);
 	trans[0][51]	= settr(50,0,68,1,0,"goto :b2", 0, 2, 0);
 	trans[0][56]	= settr(55,0,64,1,0,".(goto)", 0, 2, 0);
 	trans[0][52]	= settr(51,0,54,2,0,"else", 0, 2, 0);
 	T = trans[ 0][54] = settr(53,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(53,2,53,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][53]	= settr(52,0,64,24,24,"turnSem = (turnSem+1)", 1, 2, 0);
+	trans[0][53]	= settr(52,0,64,27,27,"turnSem = (turnSem+1)", 1, 2, 0);
 	trans[0][62]	= settr(61,0,64,1,0,".(goto)", 0, 2, 0);
-	trans[0][57]	= settr(56,0,58,25,0,"((turn==0))", 1, 2, 0);
+	trans[0][57]	= settr(56,0,58,28,0,"((turn==0))", 1, 2, 0);
 	trans[0][58]	= settr(57,0,64,1,0,"(1)", 0, 2, 0);
-	trans[0][59]	= settr(58,0,68,26,0,"((turn==1))", 1, 2, 0);
+	trans[0][59]	= settr(58,0,68,29,0,"((turn==1))", 1, 2, 0);
 	trans[0][60]	= settr(59,0,68,1,0,"goto :b2", 0, 2, 0);
 	T = trans[ 0][64] = settr(63,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(63,2,63,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][63]	= settr(62,0,65,27,27,"inUpSem = (inUpSem+1)", 1, 2, 0);
+	trans[0][63]	= settr(62,0,65,30,30,"inUpSem = (inUpSem+1)", 1, 2, 0);
 	trans[0][67]	= settr(66,0,68,1,0,"break", 0, 2, 0);
-	trans[0][68]	= settr(67,0,70,28,28,"up = (up+1)", 1, 2, 0);
+	trans[0][68]	= settr(67,0,70,31,31,"up = (up+1)", 1, 2, 0);
 	T = trans[ 0][70] = settr(69,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(69,2,69,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][69]	= settr(68,0,99,29,29,"inUpSem = (inUpSem+1)", 1, 2, 0);
+	trans[0][69]	= settr(68,0,99,32,32,"inUpSem = (inUpSem+1)", 1, 2, 0);
 	T = trans[0][99] = settr(98,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(98,0,73,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(98,0,86,0,0,"IF", 0, 2, 0);
-	trans[0][73]	= settr(72,0,76,30,0,"((_pid<5))", 0, 2, 0);
+	trans[0][73]	= settr(72,0,76,33,0,"((_pid<5))", 0, 2, 0);
 	T = trans[ 0][76] = settr(75,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(75,2,74,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][74]	= settr(73,4,77,31,31,"((inDownSem>0))", 1, 2, 0); /* m: 75 -> 77,0 */
+	trans[0][74]	= settr(73,4,77,34,34,"((inDownSem>0))", 1, 2, 0); /* m: 75 -> 77,0 */
 	reached0[75] = 1;
 	trans[0][75]	= settr(0,0,0,0,0,"inDownSem = (inDownSem-1)",0,0,0);
-	trans[0][77]	= settr(76,0,82,32,32,"down = (down-1)", 1, 2, 0);
+	trans[0][77]	= settr(76,0,82,35,35,"down = (down-1)", 1, 2, 0);
 	T = trans[0][82] = settr(81,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(81,0,78,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(81,0,80,0,0,"IF", 0, 2, 0);
-	trans[0][78]	= settr(77,0,79,33,0,"((down==0))", 1, 2, 0);
-	trans[0][79]	= settr(78,0,85,34,34,"turn = -(1)", 1, 2, 0);
+	trans[0][78]	= settr(77,0,79,36,0,"((down==0))", 1, 2, 0);
+	trans[0][79]	= settr(78,0,85,37,37,"turn = -(1)", 1, 2, 0);
 	trans[0][83]	= settr(82,0,85,1,0,".(goto)", 0, 2, 0);
 	trans[0][80]	= settr(79,0,81,2,0,"else", 0, 2, 0);
 	trans[0][81]	= settr(80,0,85,1,0,"(1)", 0, 2, 0);
 	T = trans[ 0][85] = settr(84,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(84,2,84,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][84]	= settr(83,0,101,35,35,"inDownSem = (inDownSem+1)", 1, 2, 0);
+	trans[0][84]	= settr(83,0,101,38,38,"inDownSem = (inDownSem+1)", 1, 2, 0);
 	trans[0][100]	= settr(99,0,101,1,0,".(goto)", 0, 2, 0);
 	trans[0][86]	= settr(85,0,89,2,0,"else", 0, 2, 0);
 	T = trans[ 0][89] = settr(88,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(88,2,87,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][87]	= settr(86,4,90,36,36,"((inUpSem>0))", 1, 2, 0); /* m: 88 -> 90,0 */
+	trans[0][87]	= settr(86,4,90,39,39,"((inUpSem>0))", 1, 2, 0); /* m: 88 -> 90,0 */
 	reached0[88] = 1;
 	trans[0][88]	= settr(0,0,0,0,0,"inUpSem = (inUpSem-1)",0,0,0);
-	trans[0][90]	= settr(89,0,95,37,37,"up = (up-1)", 1, 2, 0);
+	trans[0][90]	= settr(89,0,95,40,40,"up = (up-1)", 1, 2, 0);
 	T = trans[0][95] = settr(94,0,0,0,0,"IF", 0, 2, 0);
 	T = T->nxt	= settr(94,0,91,0,0,"IF", 0, 2, 0);
 	    T->nxt	= settr(94,0,93,0,0,"IF", 0, 2, 0);
-	trans[0][91]	= settr(90,0,92,38,0,"((up==0))", 1, 2, 0);
-	trans[0][92]	= settr(91,0,98,39,39,"turn = -(1)", 1, 2, 0);
+	trans[0][91]	= settr(90,0,92,41,0,"((up==0))", 1, 2, 0);
+	trans[0][92]	= settr(91,0,98,42,42,"turn = -(1)", 1, 2, 0);
 	trans[0][96]	= settr(95,0,98,1,0,".(goto)", 0, 2, 0);
 	trans[0][93]	= settr(92,0,94,2,0,"else", 0, 2, 0);
 	trans[0][94]	= settr(93,0,98,1,0,"(1)", 0, 2, 0);
 	T = trans[ 0][98] = settr(97,2,0,0,0,"ATOMIC", 1, 2, 0);
 	T->nxt	= settr(97,2,97,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][97]	= settr(96,0,101,40,40,"inUpSem = (inUpSem+1)", 1, 2, 0);
+	trans[0][97]	= settr(96,0,101,43,43,"inUpSem = (inUpSem+1)", 1, 2, 0);
 	trans[0][103]	= settr(102,0,104,1,0,"break", 0, 2, 0);
-	trans[0][104]	= settr(103,0,0,41,41,"-end-", 0, 3500, 0);
+	trans[0][104]	= settr(103,0,0,44,44,"-end-", 0, 3500, 0);
 	/* np_ demon: */
 	trans[_NP_] = (Trans **) emalloc(2*sizeof(Trans *));
 	T = trans[_NP_][0] = settr(9997,0,1,_T5,0,"(np_)", 1,2,0);
