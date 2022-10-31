@@ -30,13 +30,13 @@
 		
 	case 8: /* STATE 6 */
 		;
-		now.enter[ Index(((P1 *)this)->_2_i, 4) ] = trpt->bup.oval;
+		now.enter[ Index(((P1 *)this)->_2_i, 7) ] = trpt->bup.oval;
 		;
 		goto R999;
 
 	case 9: /* STATE 7 */
 		;
-		now.ok[ Index(((P1 *)this)->_2_i, 4) ] = trpt->bup.oval;
+		now.ok[ Index(((P1 *)this)->_2_i, 7) ] = trpt->bup.oval;
 		;
 		goto R999;
 ;
@@ -65,7 +65,7 @@
 
 	case 14: /* STATE 2 */
 		;
-		now.enter[ Index(((P0 *)this)->_pid, 4) ] = trpt->bup.oval;
+		now.enter[ Index(((P0 *)this)->_pid, 7) ] = trpt->bup.oval;
 		;
 		goto R999;
 ;
@@ -87,7 +87,7 @@
 
 	case 19: /* STATE 7 */
 		;
-		now.ok[ Index(((P0 *)this)->_pid, 4) ] = trpt->bup.oval;
+		now.ok[ Index(((P0 *)this)->_pid, 7) ] = trpt->bup.oval;
 		;
 		goto R999;
 

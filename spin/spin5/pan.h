@@ -1,5 +1,5 @@
 #define SpinVersion	"Spin Version 6.1.0 -- 4 May 2011"
-#define PanSource	"spin5.pml"
+#define PanSource	"Lab2c.pml"
 
 #define G_long	8
 #define G_int	4
@@ -97,12 +97,12 @@ uchar *loopstate2;
 #define nstates1	18	/* Coordinator */
 #define endstate1	17
 short src_ln1 [] = {
-	  0,  51,  51,  52,  52,  55,  56,  57, 
-	 58,  59,  59,  54,  62,  62,  50,  88, 
-	 50,  88,   0, };
+	  0,  48,  48,  49,  49,  51,  52,  53, 
+	 54,  55,  55,  50,  57,  57,  47,  59, 
+	 47,  59,   0, };
 S_F_MAP src_file1 [] = {
 	{ "-", 0, 0 },
-	{ "spin5.pml", 1, 17 },
+	{ "Lab2c.pml", 1, 17 },
 	{ "-", 18, 19 }
 };
 uchar reached1 [] = {
@@ -114,12 +114,12 @@ uchar *loopstate1;
 #define nstates0	18	/* P */
 #define endstate0	17
 short src_ln0 [] = {
-	  0,  24,  27,  28,  31,  32,  33,  37, 
-	 41,  41,  41,  41,  43,  41,  22,  44, 
-	 22,  44,   0, };
+	  0,  24,  26,  27,  30,  31,  32,  36, 
+	 39,  39,  39,  39,  41,  39,  22,  42, 
+	 22,  42,   0, };
 S_F_MAP src_file0 [] = {
 	{ "-", 0, 0 },
-	{ "spin5.pml", 1, 17 },
+	{ "Lab2c.pml", 1, 17 },
 	{ "-", 18, 19 }
 };
 uchar reached0 [] = {
@@ -430,8 +430,8 @@ typedef struct State {
 		unsigned short _event;
 	#endif
 #endif
-	uchar enter[4];
-	uchar ok[4];
+	uchar enter[7];
+	uchar ok[7];
 	int incrit;
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
