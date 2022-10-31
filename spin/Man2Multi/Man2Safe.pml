@@ -16,54 +16,43 @@ int turn = -1;
 int cur_up = 0;
 int cur_down = 0;
 
-// temp variables for increment and decrement
+// temp variables for non-atomic increment and decrement
 int temp_down;
 int temp_up;
 
 active [N] proctype Car() {
 	int temp;
 do
-	:: _pid == 0 -> break;
+	:: _pid == 0 -> break
 	:: _pid > 0 -> skip;
 
 enter:
-
 	if
 		:: _pid < 5 ->
-
-		do
-			:: true -> P(inDownSem);
-			P(turnSem);
-			if
-				:: turn == -1 -> turn = 0; V(turnSem); break
-				:: turn == 0 -> V(turnSem); break
-				:: turn == 1 -> V(turnSem)
-			fi;
-			V(inDownSem)
-		od;
+		P(inDownSem);
+		
+		if
+			:: turn != 0 -> P(turnSem); turn = 0
+			:: else -> skip
+		fi;
 
 		temp_down = down;
 		down = temp_down + 1;
 		V(inDownSem);
-		cur_down++;
+		cur_down++
 
 		:: else ->
+		P(inUpSem);
 
-		do
-			:: true -> P(inUpSem);
-			P(turnSem);
-			if
-				:: turn == -1 -> turn = 1; V(turnSem); break
-				:: turn == 0 -> V(turnSem)
-				:: turn == 1 -> V(turnSem); break
-			fi;
-			V(inUpSem);
-		od;
+		if
+			:: turn != 1 -> P(turnSem); turn = 1
+			:: else -> skip
+		fi;
 
 		temp_up = up;
 		up = temp_up + 1;
 		V(inUpSem);
-		cur_up++;
+		cur_up++
 	fi;
 
 leave:
@@ -74,8 +63,8 @@ leave:
 		down = temp_down - 1;
 		
 		if 
-			:: down == 0 -> turn = -1
-			:: else -> skip;
+			:: down == 0 -> turn = -1; V(turnSem)
+			:: else -> skip
 		fi;
 		
 		V(inDownSem)
@@ -86,7 +75,7 @@ leave:
 		up = temp_up - 1;
 		
 		if
-			:: up == 0 -> turn = -1
+			:: up == 0 -> turn = -1; V(turnSem)
 			:: else -> skip
 		fi;
 		

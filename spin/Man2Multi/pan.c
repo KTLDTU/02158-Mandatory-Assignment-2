@@ -596,8 +596,8 @@ addproc(int calling_pid, int n)
 		break;
 	case 0:	/* Car */
 		((P0 *)pptr(h))->_t = 0;
-		((P0 *)pptr(h))->_p = 103;
-		reached0[103]=1;
+		((P0 *)pptr(h))->_p = 79;
+		reached0[79]=1;
 		/* params: */
 		/* locals: */
 		((P0 *)pptr(h))->_1_temp = 0;

@@ -23,145 +23,89 @@
 		;
 		;
 		
-	case 9: /* STATE 8 */
+	case 9: /* STATE 7 */
 		;
 		now.inDownSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 10: /* STATE 11 */
-		;
-		now.turnSem = trpt->bup.oval;
 		;
 		goto R999;
 ;
 		;
 		
-	case 12: /* STATE 14 */
+	case 11: /* STATE 11 */
+		;
+		now.turnSem = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 12: /* STATE 13 */
 		;
 		now.turn = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 13: /* STATE 15 */
-		;
-		now.turnSem = trpt->bup.oval;
-		;
-		goto R999;
-;
-		;
-		
-	case 15: /* STATE 19 */
-		;
-		now.turnSem = trpt->bup.oval;
-		;
-		goto R999;
-;
-		;
-		
-	case 17: /* STATE 23 */
-		;
-		now.turnSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 18: /* STATE 27 */
-		;
-		now.inDownSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 19: /* STATE 32 */
+	case 13: /* STATE 18 */
 		;
 		now.temp_down = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 20: /* STATE 33 */
+	case 14: /* STATE 19 */
 		;
 		now.down = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 21: /* STATE 34 */
+	case 15: /* STATE 20 */
 		;
 		now.inDownSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 22: /* STATE 36 */
+	case 16: /* STATE 22 */
 		;
 		now.cur_down = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 23: /* STATE 40 */
+	case 17: /* STATE 25 */
 		;
 		now.inUpSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 24: /* STATE 43 */
-		;
-		now.turnSem = trpt->bup.oval;
 		;
 		goto R999;
 ;
 		;
 		
-	case 26: /* STATE 46 */
+	case 19: /* STATE 29 */
+		;
+		now.turnSem = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 20: /* STATE 31 */
 		;
 		now.turn = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 27: /* STATE 47 */
-		;
-		now.turnSem = trpt->bup.oval;
-		;
-		goto R999;
-;
-		;
-		
-	case 29: /* STATE 51 */
-		;
-		now.turnSem = trpt->bup.oval;
-		;
-		goto R999;
-;
-		;
-		
-	case 31: /* STATE 54 */
-		;
-		now.turnSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 32: /* STATE 59 */
-		;
-		now.inUpSem = trpt->bup.oval;
-		;
-		goto R999;
-
-	case 33: /* STATE 64 */
+	case 21: /* STATE 36 */
 		;
 		now.temp_up = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 34: /* STATE 65 */
+	case 22: /* STATE 37 */
 		;
 		now.up = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 35: /* STATE 66 */
+	case 23: /* STATE 38 */
 		;
 		now.inUpSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 36: /* STATE 68 */
+	case 24: /* STATE 40 */
 		;
 		now.cur_up = trpt->bup.oval;
 		;
@@ -169,25 +113,25 @@
 ;
 		;
 		
-	case 38: /* STATE 72 */
+	case 26: /* STATE 44 */
 		;
 		now.cur_down = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 39: /* STATE 74 */
+	case 27: /* STATE 46 */
 		;
 		now.inDownSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 40: /* STATE 76 */
+	case 28: /* STATE 48 */
 		;
 		now.temp_down = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 41: /* STATE 77 */
+	case 29: /* STATE 49 */
 		;
 		now.down = trpt->bup.oval;
 		;
@@ -195,37 +139,43 @@
 ;
 		;
 		
-	case 43: /* STATE 79 */
+	case 31: /* STATE 51 */
 		;
 		now.turn = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 44: /* STATE 84 */
+	case 32: /* STATE 52 */
+		;
+		now.turnSem = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 33: /* STATE 58 */
 		;
 		now.inDownSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 45: /* STATE 87 */
+	case 34: /* STATE 61 */
 		;
 		now.cur_up = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 46: /* STATE 89 */
+	case 35: /* STATE 63 */
 		;
 		now.inUpSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 47: /* STATE 91 */
+	case 36: /* STATE 65 */
 		;
 		now.temp_up = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 48: /* STATE 92 */
+	case 37: /* STATE 66 */
 		;
 		now.up = trpt->bup.oval;
 		;
@@ -233,19 +183,25 @@
 ;
 		;
 		
-	case 50: /* STATE 94 */
+	case 39: /* STATE 68 */
 		;
 		now.turn = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 51: /* STATE 99 */
+	case 40: /* STATE 69 */
+		;
+		now.turnSem = trpt->bup.oval;
+		;
+		goto R999;
+
+	case 41: /* STATE 75 */
 		;
 		now.inUpSem = trpt->bup.oval;
 		;
 		goto R999;
 
-	case 52: /* STATE 106 */
+	case 42: /* STATE 82 */
 		;
 		p_restor(II);
 		;
