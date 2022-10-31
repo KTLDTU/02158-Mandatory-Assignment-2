@@ -19,45 +19,21 @@ public class SafeAlley extends Alley {
     /* Block until car no. may enter alley */
     public void enter(int no) throws InterruptedException {
         if (no < 5) {
-            while (true) {
-                inDownSem.P();
+            inDownSem.P();
+
+            if (turn != 0) {
                 turnSem.P();
-
-                if (turn == -1) {
-                    turn = 0;
-                    turnSem.V();
-                    break;
-                }
-                else if (turn == 0) {
-                    turnSem.V();
-                    break;
-                }
-                else
-                    turnSem.V();
-
-                inDownSem.V();
+                turn = 0;
             }
 
             down++;
             inDownSem.V();
         } else {
-            while (true) {
-                inUpSem.P();
+            inUpSem.P();
+
+            if (turn != 1) {
                 turnSem.P();
-
-                if (turn == -1) {
-                    turn = 1;
-                    turnSem.V();
-                    break;
-                }
-                else if (turn == 0)
-                    turnSem.V();
-                else if (turn == 1) {
-                    turnSem.V();
-                    break;
-                }
-
-                inUpSem.V();
+                turn = 1;
             }
 
             up++;
@@ -71,12 +47,22 @@ public class SafeAlley extends Alley {
         if (no < 5) {
             inDownSem.P();
             down--;
-            if (down == 0) turn = -1;
+
+            if (down == 0) {
+                turn = -1;
+                turnSem.V();
+            }
+
             inDownSem.V();
         } else {
             inUpSem.P();
             up--;
-            if (up == 0) turn = -1;
+
+            if (up == 0) {
+                turn = -1;
+                turnSem.V();
+            }
+
             inUpSem.V();
         }
     }
